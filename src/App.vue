@@ -3,7 +3,8 @@
     <div v-if="isLoading" class="skeleton-sidebar"></div>
     <div v-else>
       <div class="sidebar" v-if="selectedCard !== null">
-        <p>Selected Color: {{ grid[selectedCard] }}</p>
+        <p>Selected Color: {{ selectedColor.name }}</p>
+        <p>Quantity: {{ selectedColor.quantity }}</p>
         <p>Additional information or actions for the selected card</p>
       </div>
     </div>
@@ -11,49 +12,38 @@
       <div
         v-for="(color, index) in grid"
         :key="index"
-        :style="{ backgroundColor: color }"
+        :style="{ backgroundColor: color.name }"
         :class="{ selected: isSelected(index) }"
         draggable="true"
         @dragstart="dragStart(index)"
         @dragover="dragOver(index)"
         @dragend="dragEnd"
         @click="selectCard(index)"
-      ></div>
+      >
+        <p v-if="color.quantity !== null" class="color-quantity">
+          {{ color.quantity }}
+        </p>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-  import { reactive, ref } from "vue";
+  import { reactive, ref, computed } from "vue";
 
   export default {
     setup() {
       const grid = reactive([
-        "red",
-        "blue",
-        "green",
-        "yellow",
-        "orange",
-        "purple",
-        "pink",
-        "teal",
-        "brown",
-        "gray",
-        "red",
-        "blue",
-        "green",
-        "yellow",
-        "orange",
-        "purple",
-        "pink",
-        "teal",
-        "brown",
-        "gray",
-        "red",
-        "blue",
-        "green",
-        "yellow",
-        "orange"
+        { name: "red", quantity: 5 },
+        { name: "blue", quantity: 3 },
+        { name: "green", quantity: 7 },
+        { name: "yellow", quantity: 2 },
+        { name: "orange", quantity: 1 },
+        { name: "purple", quantity: 4 },
+        { name: "pink", quantity: 6 },
+        { name: "teal", quantity: 0 },
+        { name: "brown", quantity: 8 },
+        { name: "gray", quantity: 9 }
       ]);
 
       const selectedCard = ref(null);
@@ -90,6 +80,13 @@
         isLoading.value = false;
       }, 2000);
 
+      const selectedColor = computed(() => {
+        if (selectedCard.value !== null) {
+          return grid[selectedCard.value];
+        }
+        return null;
+      });
+
       return {
         grid,
         selectedCard,
@@ -98,7 +95,8 @@
         dragEnd,
         selectCard,
         isSelected,
-        isLoading
+        isLoading,
+        selectedColor
       };
     }
   };
@@ -130,13 +128,25 @@
   }
 
   .grid div {
+    position: relative;
     width: 100px;
     height: 100px;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .grid div.selected {
     outline: 2px solid #000;
+  }
+
+  .color-quantity {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    color: #fff;
+    font-size: 12px;
   }
 
   @keyframes skeleton-loading {
