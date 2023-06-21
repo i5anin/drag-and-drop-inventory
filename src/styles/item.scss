@@ -1,0 +1,32 @@
+.block {
+  padding: 25px;
+  outline: 1px solid rgb(126, 126, 126);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  align-items: end;
+}
+
+.glass-effect {
+  width: 100px;
+  height: 100px;
+  backdrop-filter: blur(6px);
+  z-index: 2;
+  margin-top: -25px;
+  margin-left: 25px;
+}
+
+.color-card {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  z-index: 1;
+}
+
+.color-quantity {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  color: #fff;
+  font-size: 12px;
+}

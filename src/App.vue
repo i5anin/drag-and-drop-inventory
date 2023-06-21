@@ -1,16 +1,16 @@
 <template>
   <div>
-    <MainTable />
+    <MainPages />
   </div>
 </template>
 
 <script>
-import MainTable from '@/components/MainTable.vue'
+import MainPages from '@/components/MainPages.vue'
 
 export default {
   name: 'App',
   components: {
-    MainTable,
+    MainPages,
   },
 }
 </script>

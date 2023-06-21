@@ -1,7 +1,8 @@
+<!-- MainPages.vue -->
 <template>
   <div class="container">
     <div class="grid">
-      <ColorBlock
+      <ItemCard
         v-for="(color, index) in grid"
         :key="index"
         :color="color"
@@ -11,31 +12,22 @@
         @dragover="dragOver(index)"
         @dragend="dragEnd"
         @click="selectCard(index)"
-      ></ColorBlock>
+      ></ItemCard>
     </div>
-    <div>
-      <div class="sidebar" v-if="selectedColor !== null">
-        <p>
-          Цвет:
-          <span :style="{ color: selectedColor.name }">{{
-            selectedColor.name
-          }}</span>
-        </p>
-        <p>Количество: {{ selectedColor.quantity }}</p>
-        <p>Дополнительная информация или действия для выбранной карты</p>
-      </div>
-    </div>
+    <ItemView />
   </div>
 </template>
 
 <script>
+import ItemCard from '@/components/ItemCard.vue'
+import ItemView from '@/components/ItemView.vue'
 import { reactive, ref, computed, watch } from 'vue'
-import ColorBlock from './ColorBlock.vue'
-import { savePositions, loadPositions } from './localStorage.js'
+import { savePositions, loadPositions } from '@/services/localStorage.js'
 
 export default {
   components: {
-    ColorBlock,
+    ItemCard,
+    ItemView,
   },
   setup() {
     const grid = reactive(loadPositions())
@@ -94,43 +86,3 @@ export default {
   },
 }
 </script>
-
-<style>
-.container {
-  display: flex;
-  background: #1e1e1e;
-  color: #fff;
-}
-
-.sidebar {
-  flex: 1;
-  margin-right: 20px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  background: #333;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
-}
-
-.grid div {
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.grid div.selected {
-  outline: 2px solid #fff;
-}
-
-.color-quantity {
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
-  color: #fff;
-  font-size: 12px;
-}
-</style>
