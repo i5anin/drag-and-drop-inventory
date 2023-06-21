@@ -1,3 +1,4 @@
+<!-- ItemView -->
 <template>
   <div class="sidebar" v-if="selectedColor !== null">
     <p>
