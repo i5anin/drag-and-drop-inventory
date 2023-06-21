@@ -6,15 +6,15 @@
         :key="index"
         :color="color"
         :index="index"
-        :selectedCard="selectedCard"
-        @dragstart="dragStart"
-        @dragover="dragOver"
+        :isSelected="isSelected(index)"
+        @dragstart="dragStart(index)"
+        @dragover="dragOver(index)"
         @dragend="dragEnd"
-        @click="selectCard"
+        @click="selectCard(index)"
       ></ColorBlock>
     </div>
     <div>
-      <div class="sidebar" v-if="selectedCard !== null">
+      <div class="sidebar" v-if="selectedColor !== null">
         <p>
           Цвет:
           <span :style="{ color: selectedColor.name }">{{
@@ -39,25 +39,24 @@ export default {
   },
   setup() {
     const grid = reactive(loadPositions())
-
     const selectedCard = ref(null)
-    let draggingIndex = null
+    const draggingIndex = ref(null)
 
     const dragStart = (index) => {
-      draggingIndex = index
+      draggingIndex.value = index
     }
 
     const dragOver = (index) => {
-      if (draggingIndex !== null) {
-        const draggedColor = grid[draggingIndex]
-        grid.splice(draggingIndex, 1)
+      if (draggingIndex.value !== null) {
+        const draggedColor = grid[draggingIndex.value]
+        grid.splice(draggingIndex.value, 1)
         grid.splice(index, 0, draggedColor)
-        draggingIndex = index
+        draggingIndex.value = index
       }
     }
 
     const dragEnd = () => {
-      draggingIndex = null
+      draggingIndex.value = null
       savePositions(grid)
     }
 
@@ -77,16 +76,14 @@ export default {
     })
 
     // Сохранение позиций цветов в localStorage
-    watch(
-      () => grid,
-      () => {
-        savePositions(grid)
-      }
-    )
+    watch(grid, () => {
+      savePositions(grid)
+    })
 
     return {
       grid,
       selectedCard,
+      draggingIndex,
       dragStart,
       dragOver,
       dragEnd,

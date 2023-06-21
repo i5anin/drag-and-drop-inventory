@@ -1,7 +1,7 @@
 <template>
   <div
     :style="{ backgroundColor: color.name }"
-    :class="{ selected: isSelected(index) }"
+    :class="{ selected: isSelected }"
     draggable="true"
     @dragstart="dragStart"
     @dragover="dragOver"
@@ -25,17 +25,13 @@ export default {
       type: Number,
       required: true,
     },
-    selectedCard: {
-      type: Object,
+    isSelected: {
+      type: Boolean,
       required: true,
     },
   },
   emits: ['dragstart', 'dragover', 'dragend', 'click'],
   setup(props, { emit }) {
-    const isSelected = (index) => {
-      return index === props.selectedCard
-    }
-
     const dragStart = () => {
       emit('dragstart', props.index)
     }
@@ -53,7 +49,6 @@ export default {
     }
 
     return {
-      isSelected,
       dragStart,
       dragOver,
       dragEnd,
