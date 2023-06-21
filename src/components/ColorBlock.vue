@@ -1,4 +1,3 @@
-<!-- ColorBlock.vue -->
 <template>
   <div
     v-if="color"
