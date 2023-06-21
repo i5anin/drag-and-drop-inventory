@@ -7,15 +7,23 @@ export const savePositions = (grid) => {
 export const loadPositions = () => {
   const positions = localStorage.getItem('colorGridPositions')
   if (positions) {
-    const loadedGrid = JSON.parse(positions)
-    // Ограничение количества объектов цветов до 3
-    const grid = loadedGrid.slice(0, 3)
-    // Добавление пустых ячеек для заполнения сетки 5x5
-    while (grid.length < 5 * 5) {
-      grid.push(null)
-    }
-    return grid
+    return JSON.parse(positions)
   }
-  // Возвращение массива пустых ячеек для заполнения сетки 5x5
-  return Array(5 * 5).fill(null)
+  return [
+    { name: '#FF0000', quantity: 5 },
+    { name: '#FF3300', quantity: 3 },
+    { name: '#FF6600', quantity: 7 },
+    { name: '#FF9900', quantity: 2 },
+    { name: '#FFCC00', quantity: 1 },
+    { name: '#FFFF00', quantity: 4 },
+    { name: '#CCFF00', quantity: 6 },
+    { name: '#99FF00', quantity: 0 },
+    { name: '#66FF00', quantity: 8 },
+    { name: '#33FF00', quantity: 9 },
+    { name: '#00FF00', quantity: 9 },
+    { name: '#00FF33', quantity: 9 },
+    { name: '#00FF66', quantity: 9 },
+    { name: '#00FF99', quantity: 9 },
+    { name: '#00FFCC', quantity: 9 },
+  ]
 }
