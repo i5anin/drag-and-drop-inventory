@@ -1,3 +1,4 @@
+<!-- MainTable.vue -->
 <template>
   <div class="container">
     <div class="grid">
@@ -49,8 +50,8 @@ export default {
     const dragOver = (index) => {
       if (draggingIndex.value !== null) {
         const draggedColor = grid[draggingIndex.value]
-        grid.splice(draggingIndex.value, 1)
-        grid.splice(index, 0, draggedColor)
+        grid[draggingIndex.value] = null
+        grid.splice(index, 1, draggedColor)
         draggingIndex.value = index
       }
     }
@@ -122,6 +123,7 @@ export default {
   justify-content: center;
   align-items: center;
 }
+
 .grid div.selected {
   outline: 2px solid #fff;
 }
