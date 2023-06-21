@@ -1,13 +1,5 @@
 <template>
   <div class="container">
-    <div v-if="isLoading" class="skeleton-sidebar"></div>
-    <div v-else>
-      <div class="sidebar" v-if="selectedCard !== null">
-        <p>Selected Color: {{ selectedColor.name }}</p>
-        <p>Quantity: {{ selectedColor.quantity }}</p>
-        <p>Additional information or actions for the selected card</p>
-      </div>
-    </div>
     <div class="grid">
       <div
         v-for="(color, index) in grid"
@@ -25,11 +17,18 @@
         </p>
       </div>
     </div>
+    <div>
+      <div class="sidebar" v-if="selectedCard !== null">
+        <p>Цвет: {{ selectedColor.name }}</p>
+        <p>Количество: {{ selectedColor.quantity }}</p>
+        <p>Дополнительная информация или действия для выбранной карты</p>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import { reactive, ref, computed } from 'vue'
+import { reactive, ref, computed, watch } from 'vue'
 
 export default {
   setup() {
@@ -64,6 +63,7 @@ export default {
 
     const dragEnd = () => {
       draggingIndex = null
+      savePositions()
     }
 
     const selectCard = (index) => {
@@ -74,18 +74,36 @@ export default {
       return index === selectedCard.value
     }
 
-    // Загрузка данных (имитация)
-    const isLoading = ref(true)
-    setTimeout(() => {
-      isLoading.value = false
-    }, 2000)
-
     const selectedColor = computed(() => {
       if (selectedCard.value !== null) {
         return grid[selectedCard.value]
       }
       return null
     })
+
+    // Сохранение позиций цветов в localStorage
+    const savePositions = () => {
+      localStorage.setItem('colorGridPositions', JSON.stringify(grid))
+    }
+
+    // Загрузка позиций цветов из localStorage
+    const loadPositions = () => {
+      const positions = localStorage.getItem('colorGridPositions')
+      if (positions) {
+        grid.splice(0, grid.length, ...JSON.parse(positions))
+      }
+    }
+
+    // Загрузка позиций при монтировании компонента
+    watch(
+      () => grid,
+      () => {
+        savePositions()
+      }
+    )
+
+    // Загрузка позиций при создании компонента
+    loadPositions()
 
     return {
       grid,
@@ -95,7 +113,6 @@ export default {
       dragEnd,
       selectCard,
       isSelected,
-      isLoading,
       selectedColor,
     }
   },
