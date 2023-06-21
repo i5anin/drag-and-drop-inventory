@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="color"
     class="block"
     draggable="true"
     @dragstart="dragStart"
@@ -18,6 +19,7 @@
       </p>
     </div>
   </div>
+  <div v-else class="block empty-block"></div>
 </template>
 
 <script>
