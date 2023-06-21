@@ -2,17 +2,20 @@
 <template>
   <div class="container">
     <div class="grid">
-      <ItemCard
-        v-for="(color, index) in grid"
-        :key="index"
-        :color="color"
-        :index="index"
-        :isSelected="isSelected(index)"
-        @dragstart="dragStart(index)"
-        @dragover="dragOver(index)"
-        @dragend="dragEnd"
-        @click="selectCard(index)"
-      ></ItemCard>
+      <template v-for="(color, index) in grid" :key="index">
+        <ItemCard
+          v-if="color !== null"
+          :key="index"
+          :color="color"
+          :index="index"
+          :isSelected="isSelected(index)"
+          @dragstart="dragStart(index)"
+          @dragover="dragOver(index)"
+          @dragend="dragEnd"
+          @click="selectCard(index)"
+        ></ItemCard>
+        <div v-else class="block empty"></div>
+      </template>
     </div>
     <ItemView />
   </div>
@@ -30,6 +33,11 @@ export default {
     ItemView,
   },
   setup() {
+    const draggingEnterIndex = ref(null)
+
+    const dragEnter = (index) => {
+      draggingEnterIndex.value = index
+    }
     const grid = reactive(loadPositions())
     const selectedCard = ref(null)
     const draggingIndex = ref(null)
@@ -44,6 +52,11 @@ export default {
         grid.splice(draggingIndex.value, 1)
         grid.splice(index, 0, draggedColor)
         draggingIndex.value = index
+      } else if (draggingEnterIndex.value !== null) {
+        const draggedColor = grid[draggingEnterIndex.value]
+        grid.splice(draggingEnterIndex.value, 1)
+        grid.splice(index, 0, draggedColor)
+        draggingEnterIndex.value = index
       }
     }
 
@@ -82,6 +95,8 @@ export default {
       selectCard,
       isSelected,
       selectedColor,
+      draggingEnterIndex,
+      dragEnter,
     }
   },
 }

@@ -6,8 +6,9 @@
     @dragstart="dragStart"
     @dragover="dragOver"
     @dragend="dragEnd"
+    @dragenter="dragEnter"
     @click="selectCard"
-    :class="{ selected: isSelected }"
+    :class="{ selected: isSelected, empty: color.name === null }"
   >
     <div
       class="glass-effect"
@@ -39,6 +40,10 @@ export default {
   },
   emits: ['dragstart', 'dragover', 'dragend', 'click'],
   methods: {
+    // Обработчик события dragenter
+    dragEnter() {
+      this.$emit('dragenter', this.index)
+    },
     // Обработчик события dragstart
     dragStart() {
       this.$emit('dragstart', this.index)
@@ -57,6 +62,9 @@ export default {
     },
     // Преобразование цвета в формат RGBA с заданным значением альфа-канала
     hexToRGBA(hex, alpha) {
+      if (hex === null) {
+        return // Обработка случая, когда значение цвета равно null
+      }
       const shiftAmount = 150 // Значение сдвига
 
       // Получить значения R, G и B из HEX
