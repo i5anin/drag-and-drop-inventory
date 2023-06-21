@@ -6,16 +6,13 @@
     @dragover="dragOver"
     @dragend="dragEnd"
     @click="selectCard"
+    :class="{ selected: isSelected }"
   >
     <div
       class="glass-effect"
       :style="{ backgroundColor: colorWithAlpha }"
     ></div>
-    <div
-      class="color-card"
-      :style="{ backgroundColor: color.name }"
-      :class="{ selected: isSelected }"
-    >
+    <div class="color-card" :style="{ backgroundColor: color.name }">
       <p v-if="color.quantity !== null" class="color-quantity">
         {{ color.quantity }}
       </p>
