@@ -12,14 +12,23 @@
         @dragend="dragEnd"
         @click="selectCard(index)"
       >
-        <p v-if="color.quantity !== null" class="color-quantity">
+        <p
+          v-if="color.quantity !== null"
+          class="color-quantity"
+          :style="{ color: color.name }"
+        >
           {{ color.quantity }}
         </p>
       </div>
     </div>
     <div>
       <div class="sidebar" v-if="selectedCard !== null">
-        <p>Цвет: {{ selectedColor.name }}</p>
+        <p>
+          Цвет:
+          <span :style="{ color: selectedColor.name }">{{
+            selectedColor.name
+          }}</span>
+        </p>
         <p>Количество: {{ selectedColor.quantity }}</p>
         <p>Дополнительная информация или действия для выбранной карты</p>
       </div>
