@@ -94,3 +94,43 @@ export default {
   },
 }
 </script>
+
+<style>
+.container {
+  display: flex;
+  background: #1e1e1e;
+  color: #fff;
+}
+
+.sidebar {
+  flex: 1;
+  margin-right: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background: #333;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.grid div {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.grid div.selected {
+  outline: 2px solid #fff;
+}
+
+.color-quantity {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  color: #fff;
+  font-size: 12px;
+}
+</style>

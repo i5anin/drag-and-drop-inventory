@@ -1,5 +1,7 @@
 <template>
-  <MainTable />
+  <div>
+    <MainTable />
+  </div>
 </template>
 
 <script>
@@ -13,4 +15,10 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+body {
+  /* Стили по умолчанию для body */
+  background-color: #1e1e1e;
+  color: #fff;
+}
+</style>
