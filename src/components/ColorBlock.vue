@@ -1,5 +1,12 @@
 <template>
-  <div class="block">
+  <div
+    class="block"
+    draggable="true"
+    @dragstart="dragStart"
+    @dragover="dragOver"
+    @dragend="dragEnd"
+    @click="selectCard"
+  >
     <div
       class="glass-effect"
       :style="{ backgroundColor: colorWithAlpha }"
@@ -8,11 +15,6 @@
       class="color-card"
       :style="{ backgroundColor: color.name }"
       :class="{ selected: isSelected }"
-      draggable="true"
-      @dragstart="dragStart"
-      @dragover="dragOver"
-      @dragend="dragEnd"
-      @click="selectCard"
     >
       <p v-if="color.quantity !== null" class="color-quantity">
         {{ color.quantity }}
