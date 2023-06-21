@@ -3,14 +3,14 @@
 </template>
 
 <script>
-  import MainTable from "@/components/MainTable.vue";
+import MainTable from '@/components/MainTable.vue'
 
-  export default {
-    name: "App",
-    components: {
-      MainTable
-    }
-  };
+export default {
+  name: 'App',
+  components: {
+    MainTable,
+  },
+}
 </script>
 
 <style></style>
