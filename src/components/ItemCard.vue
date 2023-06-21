@@ -57,15 +57,19 @@ export default {
     },
     // Преобразование цвета в формат RGBA с заданным значением альфа-канала
     hexToRGBA(hex, alpha) {
-      let r = parseInt(hex.slice(1, 3), 16) + 150
-      let g = parseInt(hex.slice(3, 5), 16) + 150
-      let b = parseInt(hex.slice(5, 7), 16) + 150
+      const shiftAmount = 150 // Значение сдвига
 
-      // Убедиться, что значения находятся в диапазоне от 0 до 255
-      r = Math.max(0, Math.min(r, 255))
-      g = Math.max(0, Math.min(g, 255))
-      b = Math.max(0, Math.min(b, 255))
+      // Получить значения R, G и B из HEX
+      let r = parseInt(hex.slice(1, 3), 16)
+      let g = parseInt(hex.slice(3, 5), 16)
+      let b = parseInt(hex.slice(5, 7), 16)
 
+      // Применить сдвиг к каждому компоненту цвета
+      r = Math.max(0, Math.min(r + shiftAmount, 255))
+      g = Math.max(0, Math.min(g + shiftAmount, 255))
+      b = Math.max(0, Math.min(b + shiftAmount, 255))
+
+      // Вернуть цвет в формате RGBA с заданным значением альфа-канала
       return `rgba(${r}, ${g}, ${b}, ${alpha})`
     },
   },
