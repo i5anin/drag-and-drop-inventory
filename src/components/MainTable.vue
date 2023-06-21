@@ -1,25 +1,17 @@
 <template>
   <div class="container">
     <div class="grid">
-      <div
+      <ColorBlock
         v-for="(color, index) in grid"
         :key="index"
-        :style="{ backgroundColor: color.name }"
-        :class="{ selected: isSelected(index) }"
-        draggable="true"
-        @dragstart="dragStart(index)"
-        @dragover="dragOver(index)"
+        :color="color"
+        :index="index"
+        :selectedCard="selectedCard"
+        @dragstart="dragStart"
+        @dragover="dragOver"
         @dragend="dragEnd"
-        @click="selectCard(index)"
-      >
-        <p
-          v-if="color.quantity !== null"
-          class="color-quantity"
-          :style="{ color: color.name }"
-        >
-          {{ color.quantity }}
-        </p>
-      </div>
+        @click="selectCard"
+      ></ColorBlock>
     </div>
     <div>
       <div class="sidebar" v-if="selectedCard !== null">
@@ -38,21 +30,15 @@
 
 <script>
 import { reactive, ref, computed, watch } from 'vue'
+import ColorBlock from './ColorBlock.vue'
+import { savePositions, loadPositions } from './localStorage.js'
 
 export default {
+  components: {
+    ColorBlock,
+  },
   setup() {
-    const grid = reactive([
-      { name: 'red', quantity: 5 },
-      { name: 'blue', quantity: 3 },
-      { name: 'green', quantity: 7 },
-      { name: 'yellow', quantity: 2 },
-      { name: 'orange', quantity: 1 },
-      { name: 'purple', quantity: 4 },
-      { name: 'pink', quantity: 6 },
-      { name: 'teal', quantity: 0 },
-      { name: 'brown', quantity: 8 },
-      { name: 'gray', quantity: 9 },
-    ])
+    const grid = reactive(loadPositions())
 
     const selectedCard = ref(null)
     let draggingIndex = null
@@ -72,7 +58,7 @@ export default {
 
     const dragEnd = () => {
       draggingIndex = null
-      savePositions()
+      savePositions(grid)
     }
 
     const selectCard = (index) => {
@@ -91,28 +77,12 @@ export default {
     })
 
     // Сохранение позиций цветов в localStorage
-    const savePositions = () => {
-      localStorage.setItem('colorGridPositions', JSON.stringify(grid))
-    }
-
-    // Загрузка позиций цветов из localStorage
-    const loadPositions = () => {
-      const positions = localStorage.getItem('colorGridPositions')
-      if (positions) {
-        grid.splice(0, grid.length, ...JSON.parse(positions))
-      }
-    }
-
-    // Загрузка позиций при монтировании компонента
     watch(
       () => grid,
       () => {
-        savePositions()
+        savePositions(grid)
       }
     )
-
-    // Загрузка позиций при создании компонента
-    loadPositions()
 
     return {
       grid,
