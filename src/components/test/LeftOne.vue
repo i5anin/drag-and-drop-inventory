@@ -9,20 +9,20 @@
       <div class="blur"></div>
     </div>
     <div class="text">
-      <div class="text-skeleton-1"></div>
-      <div class="text-skeleton-2"></div>
-      <div class="text-skeleton-3"></div>
-      <div class="text-skeleton-4"></div>
-      <div class="text-skeleton-5"></div>
-      <div class="text-skeleton-6"></div>
-      <div class="text-skeleton-7"></div>
+      <div class="skeleton-main text-skeleton-1"></div>
+      <div class="skeleton-main text-skeleton-2"></div>
+      <div class="skeleton-main text-skeleton-3"></div>
+      <div class="skeleton-main text-skeleton-4"></div>
+      <div class="skeleton-main text-skeleton-5"></div>
+      <div class="skeleton-main text-skeleton-6"></div>
+      <div class="skeleton-main text-skeleton-7"></div>
     </div>
   </div>
 </template>
 
 <style>
 .container-left {
-  height: 500px;
+  height: 460px;
   padding-top: 18px;
   padding-bottom: 24px;
   padding-left: 14px;
@@ -33,10 +33,7 @@
   background: #262626;
   border-radius: 12px;
   overflow: hidden;
-  border-left: 0.5px #4d4d4d solid;
-  border-top: 0.5px #4d4d4d solid;
-  border-right: 0.5px #4d4d4d solid;
-  border-bottom: 0.5px #4d4d4d solid;
+  border: 0.5px #4d4d4d solid;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
@@ -94,9 +91,6 @@
   height: 10px;
   left: 17px;
   top: 50px;
-  position: absolute;
-  background: linear-gradient(90deg, #3c3c3c 0%, #444444 51%, #333333 100%);
-  border-radius: 4px;
 }
 
 .text-skeleton-2 {
@@ -104,8 +98,6 @@
   height: 26px;
   left: 0px;
   top: 0px;
-  position: absolute;
-  background: linear-gradient(90deg, #3c3c3c 0%, #444444 51%, #333333 100%);
   border-radius: 8px;
 }
 
@@ -114,9 +106,6 @@
   height: 10px;
   left: 0px;
   top: 76px;
-  position: absolute;
-  background: linear-gradient(90deg, #3c3c3c 0%, #444444 51%, #333333 100%);
-  border-radius: 4px;
 }
 
 .text-skeleton-4 {
@@ -124,9 +113,6 @@
   height: 10px;
   left: 10px;
   top: 102px;
-  position: absolute;
-  background: linear-gradient(90deg, #3c3c3c 0%, #444444 51%, #333333 100%);
-  border-radius: 4px;
 }
 
 .text-skeleton-5 {
@@ -134,9 +120,6 @@
   height: 10px;
   left: 15px;
   top: 128px;
-  position: absolute;
-  background: linear-gradient(90deg, #3c3c3c 0%, #444444 51%, #333333 100%);
-  border-radius: 4px;
 }
 
 .text-skeleton-6 {
@@ -144,9 +127,6 @@
   height: 10px;
   left: 25px;
   top: 154px;
-  position: absolute;
-  background: linear-gradient(90deg, #3c3c3c 0%, #444444 51%, #333333 100%);
-  border-radius: 4px;
 }
 
 .text-skeleton-7 {
@@ -154,6 +134,9 @@
   height: 10px;
   left: 55px;
   top: 188px;
+}
+
+.skeleton-main {
   position: absolute;
   background: linear-gradient(90deg, #3c3c3c 0%, #444444 51%, #333333 100%);
   border-radius: 4px;
