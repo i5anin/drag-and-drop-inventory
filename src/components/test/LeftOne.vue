@@ -1,140 +1,21 @@
 <template>
   <div class="container-left">
     <div class="container-text">
-      <div class="xxx-container">
-        <div>
-          <img
-            style="width: 490px; height: 789px"
-            src="https://via.placeholder.com/490x789"
-          />
+      <div class="container-img">
+        <div class="img">
+          <img src="../../assets/nicebg.png" />
         </div>
       </div>
-      <div
-        style="
-          width: 208px;
-          height: 240px;
-          left: 0px;
-          top: 0px;
-          position: absolute;
-          background: rgba(255, 255, 255, 0.1);
-          border-radius: 8px;
-          backdrop-filter: blur(12px);
-        "
-      ></div>
+      <div class="blur"></div>
     </div>
-    <div style="width: 190px; height: 198px; position: relative">
-      <div
-        style="
-          width: 155px;
-          height: 10px;
-          left: 17px;
-          top: 50px;
-          position: absolute;
-          background: linear-gradient(
-            90deg,
-            #3c3c3c 0%,
-            #444444 51%,
-            #333333 100%
-          );
-          border-radius: 4px;
-        "
-      ></div>
-      <div
-        style="
-          width: 190px;
-          height: 26px;
-          left: 0px;
-          top: 0px;
-          position: absolute;
-          background: linear-gradient(
-            90deg,
-            #3c3c3c 0%,
-            #444444 51%,
-            #333333 100%
-          );
-          border-radius: 8px;
-        "
-      ></div>
-      <div
-        style="
-          width: 190px;
-          height: 10px;
-          left: 0px;
-          top: 76px;
-          position: absolute;
-          background: linear-gradient(
-            90deg,
-            #3c3c3c 0%,
-            #444444 51%,
-            #333333 100%
-          );
-          border-radius: 4px;
-        "
-      ></div>
-      <div
-        style="
-          width: 170px;
-          height: 10px;
-          left: 10px;
-          top: 102px;
-          position: absolute;
-          background: linear-gradient(
-            90deg,
-            #3c3c3c 0%,
-            #444444 51%,
-            #333333 100%
-          );
-          border-radius: 4px;
-        "
-      ></div>
-      <div
-        style="
-          width: 160px;
-          height: 10px;
-          left: 15px;
-          top: 128px;
-          position: absolute;
-          background: linear-gradient(
-            90deg,
-            #3c3c3c 0%,
-            #444444 51%,
-            #333333 100%
-          );
-          border-radius: 4px;
-        "
-      ></div>
-      <div
-        style="
-          width: 140px;
-          height: 10px;
-          left: 25px;
-          top: 154px;
-          position: absolute;
-          background: linear-gradient(
-            90deg,
-            #3c3c3c 0%,
-            #444444 51%,
-            #333333 100%
-          );
-          border-radius: 4px;
-        "
-      ></div>
-      <div
-        style="
-          width: 80px;
-          height: 10px;
-          left: 55px;
-          top: 188px;
-          position: absolute;
-          background: linear-gradient(
-            90deg,
-            #3c3c3c 0%,
-            #444444 51%,
-            #333333 100%
-          );
-          border-radius: 4px;
-        "
-      ></div>
+    <div class="text">
+      <div class="text-skeleton-1"></div>
+      <div class="text-skeleton-2"></div>
+      <div class="text-skeleton-3"></div>
+      <div class="text-skeleton-4"></div>
+      <div class="text-skeleton-5"></div>
+      <div class="text-skeleton-6"></div>
+      <div class="text-skeleton-7"></div>
     </div>
   </div>
 </template>
@@ -168,7 +49,7 @@
   height: 240px;
   position: relative;
 }
-.xxx-container {
+.container-img {
   width: 200px;
   height: 240px;
   left: 4px;
@@ -182,12 +63,99 @@
   display: inline-flex;
 }
 
-.yyy-container {
+.img {
   width: 490px;
   height: 789px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   display: inline-flex;
+}
+
+.blur {
+  width: 208px;
+  height: 240px;
+  left: 0px;
+  top: 0px;
+  position: absolute;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  backdrop-filter: blur(12px);
+}
+
+.text {
+  width: 190px;
+  height: 198px;
+  position: relative;
+}
+
+.text-skeleton-1 {
+  width: 155px;
+  height: 10px;
+  left: 17px;
+  top: 50px;
+  position: absolute;
+  background: linear-gradient(90deg, #3c3c3c 0%, #444444 51%, #333333 100%);
+  border-radius: 4px;
+}
+
+.text-skeleton-2 {
+  width: 190px;
+  height: 26px;
+  left: 0px;
+  top: 0px;
+  position: absolute;
+  background: linear-gradient(90deg, #3c3c3c 0%, #444444 51%, #333333 100%);
+  border-radius: 8px;
+}
+
+.text-skeleton-3 {
+  width: 190px;
+  height: 10px;
+  left: 0px;
+  top: 76px;
+  position: absolute;
+  background: linear-gradient(90deg, #3c3c3c 0%, #444444 51%, #333333 100%);
+  border-radius: 4px;
+}
+
+.text-skeleton-4 {
+  width: 170px;
+  height: 10px;
+  left: 10px;
+  top: 102px;
+  position: absolute;
+  background: linear-gradient(90deg, #3c3c3c 0%, #444444 51%, #333333 100%);
+  border-radius: 4px;
+}
+
+.text-skeleton-5 {
+  width: 160px;
+  height: 10px;
+  left: 15px;
+  top: 128px;
+  position: absolute;
+  background: linear-gradient(90deg, #3c3c3c 0%, #444444 51%, #333333 100%);
+  border-radius: 4px;
+}
+
+.text-skeleton-6 {
+  width: 140px;
+  height: 10px;
+  left: 25px;
+  top: 154px;
+  position: absolute;
+  background: linear-gradient(90deg, #3c3c3c 0%, #444444 51%, #333333 100%);
+  border-radius: 4px;
+}
+
+.text-skeleton-7 {
+  width: 80px;
+  height: 10px;
+  left: 55px;
+  top: 188px;
+  position: absolute;
+  background: linear-gradient(90deg, #3c3c3c 0%, #444444 51%, #333333 100%);
+  border-radius: 4px;
 }
 </style>
