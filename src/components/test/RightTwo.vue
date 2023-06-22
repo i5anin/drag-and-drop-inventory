@@ -1,129 +1,66 @@
 <template>
   <div class="main_grid">
-    <div class="grid_1">
-      <div style="width: 105px; height: 100px; position: relative">
-        <div class="grid_2">
-          <div
-            style="
-              width: 48px;
-              height: 48px;
-              left: 0px;
-              top: 6px;
-              position: absolute;
-              background: #7faa65;
-            "
-          ></div>
-          <div
-            style="
-              width: 48px;
-              height: 48px;
-              left: 6px;
-              top: 0px;
-              position: absolute;
-              background: rgba(184.24, 216.75, 151.73, 0.35);
-              backdrop-filter: blur(12px);
-            "
-          ></div>
+    <div class="line">
+      <div class="cell">
+        <div class="position-color-item">
+          <div class="color-item-1"></div>
+          <div class="color-item-1-blur"></div>
         </div>
-        <div class="grid_3">
-          <div class="grid_4"></div>
-          <div class="number_items">4</div>
+        <div class="frame-layout">
+          <div class="number-frame"></div>
+          <div class="number-items">4</div>
         </div>
       </div>
-      <div class="grid_5">
-        <div class="grid_2">
-          <div
-            style="
-              width: 48px;
-              height: 48px;
-              left: 0px;
-              top: 6px;
-              position: absolute;
-              background: #aa9765;
-            "
-          ></div>
-          <div
-            style="
-              width: 48px;
-              height: 48px;
-              left: 6px;
-              top: 0px;
-              position: absolute;
-              background: rgba(216.75, 186.84, 151.73, 0.35);
-              backdrop-filter: blur(12px);
-            "
-          ></div>
+      <div class="cell">
+        <div class="position-color-item">
+          <div class="color-item-2"></div>
+          <div class="color-item-2-blur"></div>
         </div>
-        <div class="grid_3">
-          <div class="grid_4"></div>
-          <div class="number_items">2</div>
+        <div class="frame-layout">
+          <div class="number-frame"></div>
+          <div class="number-items">2</div>
         </div>
       </div>
-      <div class="grid_5">
-        <div class="grid_2">
-          <div
-            style="
-              width: 48px;
-              height: 48px;
-              left: 0px;
-              top: 6px;
-              position: absolute;
-              background: #656caa;
-            "
-          ></div>
-          <div
-            style="
-              width: 48px;
-              height: 48px;
-              left: 6px;
-              top: 0px;
-              position: absolute;
-              background: rgba(116.49, 128.54, 236.94, 0.35);
-              backdrop-filter: blur(12px);
-            "
-          ></div>
+      <div class="cell">
+        <div class="position-color-item">
+          <div class="color-item-3"></div>
+          <div class="color-item-3-blur"></div>
         </div>
-        <div class="grid_3">
-          <div class="grid_4"></div>
-          <div class="number_items">5</div>
+        <div class="frame-layout">
+          <div class="number-frame"></div>
+          <div class="number-items">5</div>
         </div>
       </div>
-      <div class="grid_5"></div>
-      <div class="grid_5"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
     </div>
-    <div class="grid_1">
-      <div class="grid_5"></div>
-      <div class="grid_5"></div>
-      <div class="grid_5"></div>
-      <div class="grid_5"></div>
-      <div class="grid_5"></div>
+    <div class="line">
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
     </div>
-    <div class="grid_1">
-      <div class="grid_5"></div>
-      <div class="grid_5"></div>
-      <div class="grid_5"></div>
-      <div class="grid_5"></div>
-      <div class="grid_5"></div>
+    <div class="line">
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
     </div>
-    <div class="grid_1">
-      <div class="grid_5"></div>
-      <div class="grid_5"></div>
-      <div class="grid_5"></div>
-      <div class="grid_5"></div>
-      <div class="grid_5"></div>
+    <div class="line">
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
     </div>
-    <div
-      style="
-        justify-content: flex-start;
-        align-items: flex-start;
-        display: inline-flex;
-      "
-    >
-      <div style="width: 105px; height: 100px; position: relative"></div>
-      <div class="grid_5"></div>
-      <div class="grid_5"></div>
-      <div class="grid_5"></div>
-      <div class="grid_5"></div>
+    <div class="justify-content">
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
     </div>
   </div>
 </template>
@@ -152,14 +89,14 @@
   display: inline-flex;
 }
 
-.grid_1 {
+.line {
   border-bottom: 0.5px #4d4d4d solid;
   justify-content: flex-start;
   align-items: flex-start;
   display: inline-flex;
 }
 
-.grid_2 {
+.position-color-item {
   width: 54px;
   height: 54px;
   left: 26px;
@@ -167,14 +104,14 @@
   position: absolute;
 }
 
-.grid_3 {
+.frame-layout {
   width: 16px;
   height: 16px;
   left: 88px;
   top: 83px;
   position: absolute;
 }
-.grid_4 {
+.number-frame {
   width: 16px;
   height: 16px;
   left: 0px;
@@ -188,7 +125,7 @@
   border-bottom: 0.5px #4d4d4d solid;
 }
 
-.number_items {
+.number-items {
   width: 8px;
   height: 12px;
   left: 4px;
@@ -203,10 +140,76 @@
   word-wrap: break-word;
 }
 
-.grid_5 {
+.cell {
   width: 105px;
   height: 100px;
   position: relative;
   border-left: 0.5px #4d4d4d solid;
+}
+
+.cell:first-child,
+.cell:last-child {
+  /* border-left: none; */
+}
+
+.color-item-1 {
+  width: 48px;
+  height: 48px;
+  left: 0px;
+  top: 6px;
+  position: absolute;
+  background: #7faa65;
+}
+
+.color-item-1-blur {
+  width: 48px;
+  height: 48px;
+  left: 6px;
+  top: 0px;
+  position: absolute;
+  background: rgba(184.24, 216.75, 151.73, 0.35);
+  backdrop-filter: blur(12px);
+}
+
+.color-item-2 {
+  width: 48px;
+  height: 48px;
+  left: 0px;
+  top: 6px;
+  position: absolute;
+  background: #aa9765;
+}
+.color-item-2-blur {
+  width: 48px;
+  height: 48px;
+  left: 6px;
+  top: 0px;
+  position: absolute;
+  background: rgba(216.75, 186.84, 151.73, 0.35);
+  backdrop-filter: blur(12px);
+}
+
+.color-item-3 {
+  width: 48px;
+  height: 48px;
+  left: 0px;
+  top: 6px;
+  position: absolute;
+  background: #656caa;
+}
+.color-item-3-blur {
+  width: 48px;
+  height: 48px;
+  left: 6px;
+  top: 0px;
+  position: absolute;
+  background: rgba(116.49, 128.54, 236.94, 0.35);
+  backdrop-filter: blur(12px);
+}
+
+.justify-content {
+  justify-content: flex-start;
+  align-items: flex-start;
+  display: inline-flex;
 }
 </style>
