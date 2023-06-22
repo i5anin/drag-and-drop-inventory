@@ -1,9 +1,9 @@
 <template>
-  <div class="container-left">
+  <div class="container-info">
     <div class="container-text">
       <div class="container-img">
         <div class="img">
-          <img src="../../assets/nicebg.png" />
+          <img src="@/assets/nicebg.png" />
         </div>
       </div>
       <div class="blur"></div>
@@ -20,8 +20,8 @@
   </div>
 </template>
 
-<style>
-.container-left {
+<style lang="scss">
+.container-info {
   height: 460px;
   padding-top: 18px;
   padding-bottom: 24px;

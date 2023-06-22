@@ -7,7 +7,7 @@
   </div>
 </template>
 
-<style>
+<style lang="scss">
 .container-footer {
   width: 785px;
   height: 72px;
@@ -17,10 +17,7 @@
   background: #262626;
   border-radius: 12px;
   overflow: hidden;
-  border-left: 0.5px #4d4d4d solid;
-  border-top: 0.5px #4d4d4d solid;
-  border-right: 0.5px #4d4d4d solid;
-  border-bottom: 0.5px #4d4d4d solid;
+  border: 0.5px #4d4d4d solid;
 }
 
 .close-location-footer {
