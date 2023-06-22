@@ -1,54 +1,8 @@
 <template>
-  <div
-    style="
-      height: 500px;
-      padding-top: 18px;
-      padding-bottom: 24px;
-      padding-left: 14px;
-      padding-right: 14px;
-      left: 32px;
-      top: 32px;
-      position: absolute;
-      background: #262626;
-      border-radius: 12px;
-      overflow: hidden;
-      border-left: 0.5px #4d4d4d solid;
-      border-top: 0.5px #4d4d4d solid;
-      border-right: 0.5px #4d4d4d solid;
-      border-bottom: 0.5px #4d4d4d solid;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      gap: 20px;
-      display: inline-flex;
-    "
-  >
-    <div style="width: 208px; height: 240px; position: relative">
-      <div
-        style="
-          width: 200px;
-          height: 240px;
-          left: 4px;
-          top: 0px;
-          position: absolute;
-          border-radius: 8px;
-          overflow: hidden;
-          flex-direction: column;
-          justify-content: flex-start;
-          align-items: center;
-          display: inline-flex;
-        "
-      >
-        <div
-          style="
-            width: 490px;
-            height: 789px;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            display: inline-flex;
-          "
-        >
+  <div class="container-left">
+    <div class="container-text">
+      <div class="xxx-container">
+        <div>
           <img
             style="width: 490px; height: 789px"
             src="https://via.placeholder.com/490x789"
@@ -184,3 +138,56 @@
     </div>
   </div>
 </template>
+
+<style>
+.container-left {
+  height: 500px;
+  padding-top: 18px;
+  padding-bottom: 24px;
+  padding-left: 14px;
+  padding-right: 14px;
+  left: 32px;
+  top: 32px;
+  position: absolute;
+  background: #262626;
+  border-radius: 12px;
+  overflow: hidden;
+  border-left: 0.5px #4d4d4d solid;
+  border-top: 0.5px #4d4d4d solid;
+  border-right: 0.5px #4d4d4d solid;
+  border-bottom: 0.5px #4d4d4d solid;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  display: inline-flex;
+}
+
+.container-text {
+  width: 208px;
+  height: 240px;
+  position: relative;
+}
+.xxx-container {
+  width: 200px;
+  height: 240px;
+  left: 4px;
+  top: 0px;
+  position: absolute;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  display: inline-flex;
+}
+
+.yyy-container {
+  width: 490px;
+  height: 789px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: inline-flex;
+}
+</style>
