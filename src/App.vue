@@ -7,7 +7,7 @@
 
 <script>
 // import MainPages from '@/components/MainPages.vue'
-import TestTest from '@/components/TestTest.vue'
+import TestTest from '@/components/test/TestTest.vue'
 
 export default {
   name: 'App',

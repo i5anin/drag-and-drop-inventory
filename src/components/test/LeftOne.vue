@@ -1,0 +1,186 @@
+<template>
+  <div
+    style="
+      height: 500px;
+      padding-top: 18px;
+      padding-bottom: 24px;
+      padding-left: 14px;
+      padding-right: 14px;
+      left: 32px;
+      top: 32px;
+      position: absolute;
+      background: #262626;
+      border-radius: 12px;
+      overflow: hidden;
+      border-left: 0.5px #4d4d4d solid;
+      border-top: 0.5px #4d4d4d solid;
+      border-right: 0.5px #4d4d4d solid;
+      border-bottom: 0.5px #4d4d4d solid;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 20px;
+      display: inline-flex;
+    "
+  >
+    <div style="width: 208px; height: 240px; position: relative">
+      <div
+        style="
+          width: 200px;
+          height: 240px;
+          left: 4px;
+          top: 0px;
+          position: absolute;
+          border-radius: 8px;
+          overflow: hidden;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: center;
+          display: inline-flex;
+        "
+      >
+        <div
+          style="
+            width: 490px;
+            height: 789px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            display: inline-flex;
+          "
+        >
+          <img
+            style="width: 490px; height: 789px"
+            src="https://via.placeholder.com/490x789"
+          />
+        </div>
+      </div>
+      <div
+        style="
+          width: 208px;
+          height: 240px;
+          left: 0px;
+          top: 0px;
+          position: absolute;
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 8px;
+          backdrop-filter: blur(12px);
+        "
+      ></div>
+    </div>
+    <div style="width: 190px; height: 198px; position: relative">
+      <div
+        style="
+          width: 155px;
+          height: 10px;
+          left: 17px;
+          top: 50px;
+          position: absolute;
+          background: linear-gradient(
+            90deg,
+            #3c3c3c 0%,
+            #444444 51%,
+            #333333 100%
+          );
+          border-radius: 4px;
+        "
+      ></div>
+      <div
+        style="
+          width: 190px;
+          height: 26px;
+          left: 0px;
+          top: 0px;
+          position: absolute;
+          background: linear-gradient(
+            90deg,
+            #3c3c3c 0%,
+            #444444 51%,
+            #333333 100%
+          );
+          border-radius: 8px;
+        "
+      ></div>
+      <div
+        style="
+          width: 190px;
+          height: 10px;
+          left: 0px;
+          top: 76px;
+          position: absolute;
+          background: linear-gradient(
+            90deg,
+            #3c3c3c 0%,
+            #444444 51%,
+            #333333 100%
+          );
+          border-radius: 4px;
+        "
+      ></div>
+      <div
+        style="
+          width: 170px;
+          height: 10px;
+          left: 10px;
+          top: 102px;
+          position: absolute;
+          background: linear-gradient(
+            90deg,
+            #3c3c3c 0%,
+            #444444 51%,
+            #333333 100%
+          );
+          border-radius: 4px;
+        "
+      ></div>
+      <div
+        style="
+          width: 160px;
+          height: 10px;
+          left: 15px;
+          top: 128px;
+          position: absolute;
+          background: linear-gradient(
+            90deg,
+            #3c3c3c 0%,
+            #444444 51%,
+            #333333 100%
+          );
+          border-radius: 4px;
+        "
+      ></div>
+      <div
+        style="
+          width: 140px;
+          height: 10px;
+          left: 25px;
+          top: 154px;
+          position: absolute;
+          background: linear-gradient(
+            90deg,
+            #3c3c3c 0%,
+            #444444 51%,
+            #333333 100%
+          );
+          border-radius: 4px;
+        "
+      ></div>
+      <div
+        style="
+          width: 80px;
+          height: 10px;
+          left: 55px;
+          top: 188px;
+          position: absolute;
+          background: linear-gradient(
+            90deg,
+            #3c3c3c 0%,
+            #444444 51%,
+            #333333 100%
+          );
+          border-radius: 4px;
+        "
+      ></div>
+    </div>
+  </div>
+</template>
