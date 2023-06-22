@@ -1,100 +1,58 @@
 <template>
-  <div class="grid-container">
-    <div
-      v-for="(row, rowIndex) in grid"
-      :key="'row-' + rowIndex"
-      class="grid-row"
-    >
-      <div
-        v-for="(cell, colIndex) in row"
-        :key="'cell-' + colIndex"
-        class="grid-cell"
-        :class="getCellClass(rowIndex, colIndex)"
-        @click="handleCellClick(rowIndex, colIndex)"
-      >
-        {{ cell }}
+  <draggable
+    v-model="myArray"
+    group="people"
+    @start="drag = true"
+    @end="drag = false"
+    item-key="id"
+    :empty-insert-placeholder="true"
+  >
+    <template #item="{ element }">
+      <div class="draggable-item" v-if="element.id !== null">
+        {{ element.name }}
       </div>
-    </div>
-  </div>
+    </template>
+    <template #empty="{ index }">
+      <div
+        class="draggable-item draggable-item-empty"
+        :key="'empty-' + index"
+      ></div>
+    </template>
+  </draggable>
 </template>
 
 <style>
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  grid-gap: 10px;
-  height: 300px;
-}
-
-.grid-row {
-  display: flex;
-  justify-content: space-between;
-}
-
-.grid-cell {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.draggable-item {
   background-color: #ffffff; /* Белый цвет */
   padding: 10px;
   margin-bottom: 10px;
 }
 
 .draggable-item-empty {
+  height: 50px;
   background-color: #ffffff; /* Белый цвет */
+  padding: 10px;
+  margin-bottom: 10px;
   border: 2px dashed #dddddd; /* Пунктирная граница для пустых ячеек */
-}
-
-.draggable-item {
-  cursor: pointer;
-}
-
-.selected {
-  background-color: #ff0000; /* Красный цвет */
-  color: #ffffff; /* Белый цвет */
 }
 </style>
 
 <script>
+import draggable from 'vuedraggable'
+
 export default {
+  components: {
+    draggable,
+  },
   data() {
     return {
-      grid: [],
-      selectedItem: null,
+      myArray: [
+        { id: 1, name: 'Item 1' },
+        { id: 2, name: 'Item 2' },
+        { id: 3, name: 'Item 3' },
+      ],
+      drag: false,
     }
-  },
-  created() {
-    this.initializeGrid()
-  },
-  methods: {
-    initializeGrid() {
-      this.grid = [
-        ['Item 1', 'Item 1', 'Item 1', '0', '0'],
-        ['0', '0', '0', '0', '0'],
-        ['0', '0', '0', '0', '0'],
-        ['0', '0', '0', '0', '0'],
-        ['0', '0', '0', '0', '0'],
-      ]
-    },
-    getCellClass(rowIndex, colIndex) {
-      const cellValue = this.grid[rowIndex][colIndex]
-      return {
-        'draggable-item': cellValue !== '0',
-        'draggable-item-empty': cellValue === '0',
-      }
-    },
-    handleCellClick(rowIndex, colIndex) {
-      const cellValue = this.grid[rowIndex][colIndex]
-
-      if (cellValue === '0' && this.selectedItem !== null) {
-        this.grid[rowIndex].splice(colIndex, 1, this.selectedItem)
-        this.selectedItem = null
-      } else if (cellValue !== '0') {
-        this.selectedItem = cellValue
-        this.grid[rowIndex].splice(colIndex, 1, '0')
-      }
-    },
   },
 }
 </script>
