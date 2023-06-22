@@ -1,11 +1,23 @@
 <template>
   <div class="container-footer">
     <div class="close-location-footer">
-      <div class="close-footer"></div>
+      <img :src="CloseSVG" alt="Close Icon" />
     </div>
     <div class="gradient-footer"></div>
   </div>
 </template>
+
+<script>
+import CloseSVG from '@/assets/close.svg'
+
+export default {
+  data() {
+    return {
+      CloseSVG,
+    }
+  },
+}
+</script>
 
 <style lang="scss">
 .container-footer {
