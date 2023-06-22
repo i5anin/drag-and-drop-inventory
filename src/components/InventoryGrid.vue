@@ -1,7 +1,7 @@
 <template>
   <div class="container-grid">
     <div class="main_grid">
-      <div class="line">
+      <div class="line border">
         <div class="cell">
           <div class="position-color-item">
             <div class="color-item color-item-1"></div>
@@ -35,28 +35,28 @@
         <div class="cell"></div>
         <div class="cell"></div>
       </div>
-      <div class="line">
+      <div class="line border">
         <div class="cell"></div>
         <div class="cell"></div>
         <div class="cell"></div>
         <div class="cell"></div>
         <div class="cell"></div>
       </div>
-      <div class="line">
+      <div class="line border">
         <div class="cell"></div>
         <div class="cell"></div>
         <div class="cell"></div>
         <div class="cell"></div>
         <div class="cell"></div>
       </div>
-      <div class="line">
+      <div class="line border">
         <div class="cell"></div>
         <div class="cell"></div>
         <div class="cell"></div>
         <div class="cell"></div>
         <div class="cell"></div>
       </div>
-      <div class="justify-content">
+      <div class="line border">
         <div class="cell"></div>
         <div class="cell"></div>
         <div class="cell"></div>
@@ -92,10 +92,13 @@
 }
 
 .line {
-  border-bottom: 0.5px #4d4d4d solid;
   justify-content: flex-start;
   align-items: flex-start;
   display: inline-flex;
+}
+
+.border:not(:last-child) {
+  border-bottom: 0.5px #4d4d4d solid;
 }
 
 .position-color-item {
@@ -193,11 +196,5 @@
 
 .color-item-3-blur {
   background: rgba(116.49, 128.54, 236.94, 0.35);
-}
-
-.justify-content {
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: inline-flex;
 }
 </style>
