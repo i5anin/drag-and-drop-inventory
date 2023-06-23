@@ -1,91 +1,44 @@
 <template>
   <div class="container-grid">
-    <div class="main_grid">
-      <div class="line border">
-        <div class="cell">
+    <div class="main-grid">
+      <div class="line border" v-for="row in 5" :key="row">
+        <div class="cell" v-for="col in 5" :key="col">
           <div class="position-color-item">
-            <div class="color-item color-item-1"></div>
-            <div class="color-item-blur color-item-1-blur"></div>
+            <div :class="`color-item color-item-${col}`"></div>
+            <div :class="`color-item-blur color-item-${col}-blur`"></div>
           </div>
           <div class="frame-layout">
             <div class="number-frame"></div>
-            <div class="number-items">4</div>
+            <div class="number-items">{{ col }}</div>
           </div>
         </div>
-        <div class="cell">
-          <div class="position-color-item">
-            <div class="color-item color-item-2"></div>
-            <div class="color-item-blur color-item-2-blur"></div>
-          </div>
-          <div class="frame-layout">
-            <div class="number-frame"></div>
-            <div class="number-items">2</div>
-          </div>
-        </div>
-        <div class="cell">
-          <div class="position-color-item">
-            <div class="color-item color-item-3"></div>
-            <div class="color-item-blur color-item-3-blur"></div>
-          </div>
-          <div class="frame-layout">
-            <div class="number-frame"></div>
-            <div class="number-items">5</div>
-          </div>
-        </div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-      </div>
-      <div class="line border">
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-      </div>
-      <div class="line border">
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-      </div>
-      <div class="line border">
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-      </div>
-      <div class="line border">
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
       </div>
     </div>
   </div>
 </template>
 
+<script>
+export default {
+  name: 'GridComponent',
+}
+</script>
+
 <style lang="scss">
 .container-grid {
   width: 849px;
   height: 660px;
-  // position: relative;
   background: #1d1d1d;
 }
 
-.main_grid {
+.main-grid {
   left: 292px;
   top: 32px;
   position: absolute;
   border-radius: 12px;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
   display: inline-flex;
   background: #262626;
   border: 0.5px #4d4d4d solid;
+  flex-wrap: wrap; /* Добавлено для переноса на новую строку */
 }
 
 .number-frame {
@@ -100,9 +53,8 @@
 }
 
 .line {
-  justify-content: flex-start;
-  align-items: flex-start;
   display: inline-flex;
+  flex-wrap: wrap; /* Добавлено для переноса на новую строку */
 }
 
 .border:not(:last-child) {
