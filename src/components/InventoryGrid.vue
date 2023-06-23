@@ -88,6 +88,17 @@
   border: 0.5px #4d4d4d solid;
 }
 
+.number-frame {
+  width: 16px;
+  height: 16px;
+  left: 0px;
+  top: 0px;
+  position: absolute;
+  background: #262626;
+  border-top-left-radius: 6px;
+  border: 0.5px #4d4d4d solid;
+}
+
 .line {
   justify-content: flex-start;
   align-items: flex-start;
@@ -112,17 +123,6 @@
   left: 88px;
   top: 83px;
   position: absolute;
-}
-
-.number-frame {
-  width: 16px;
-  height: 16px;
-  left: 0px;
-  top: 0px;
-  position: absolute;
-  background: #262626;
-  border-top-left-radius: 6px;
-  border: 0.5px #4d4d4d solid;
 }
 
 .number-items {
