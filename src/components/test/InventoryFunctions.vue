@@ -58,17 +58,18 @@ export default {
 
 <style>
 .draggable-item {
-  width: 50px;
-  height: 50px;
+  width: 80px;
+  height: 80px;
   background-color: #ffffff;
   padding: 10px;
-  margin: 0 5px;
   display: flex;
+  outline: 1px solid black;
 }
 
 .draggable-container {
-  display: flex;
-  flex-direction: row;
+  border-radius: 12px;
+  grid-template-columns: repeat(5, 100px);
+  display: grid;
 }
 
 .draggable-item.placeholder {
