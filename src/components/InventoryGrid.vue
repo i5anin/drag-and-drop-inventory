@@ -79,16 +79,13 @@
   left: 292px;
   top: 32px;
   position: absolute;
-  background: #262626;
   border-radius: 12px;
-  border-left: 0.5px #4d4d4d solid;
-  border-top: 0.5px #4d4d4d solid;
-  border-right: 0.5px #4d4d4d solid;
-  border-bottom: 0.5px #4d4d4d solid;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   display: inline-flex;
+  background: #262626;
+  border: 0.5px #4d4d4d solid;
 }
 
 .line {
@@ -125,10 +122,7 @@
   position: absolute;
   background: #262626;
   border-top-left-radius: 6px;
-  border-left: 0.5px #4d4d4d solid;
-  border-top: 0.5px #4d4d4d solid;
-  border-right: 0.5px #4d4d4d solid;
-  border-bottom: 0.5px #4d4d4d solid;
+  border: 0.5px #4d4d4d solid;
 }
 
 .number-items {
