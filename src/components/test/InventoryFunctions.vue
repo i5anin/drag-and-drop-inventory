@@ -7,11 +7,11 @@
     :move="checkMove"
   >
     <template #item="{ element }">
-      <div class="draggable-item" v-if="element.name !== null">
-        {{ element.name }}
-      </div>
-      <div v-else>
-        <div class="draggable-item placeholder"></div>
+      <div
+        class="draggable-item"
+        :class="{ placeholder: element.name === null }"
+      >
+        {{ element.name || ' ' }}
       </div>
     </template>
   </draggable>
@@ -50,9 +50,7 @@ export default {
       this.currentInventory = [...this.initialInventory, ...emptyItems]
     },
     checkMove(evt) {
-      if (evt.draggedContext.element.name === null) {
-        return false // Отмена операции перетаскивания для пустых ячеек
-      }
+      return evt.draggedContext.element.name !== null
     },
   },
 }
