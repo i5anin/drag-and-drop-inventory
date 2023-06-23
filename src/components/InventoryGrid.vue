@@ -1,15 +1,17 @@
 <template>
   <div class="container-grid">
     <div class="main_grid">
-      <div class="line border" v-for="row in 5" :key="row">
-        <div class="cell" v-for="col in 5" :key="col">
+      <div class="line border" v-for="row in gridData" :key="row.id">
+        <div class="cell" v-for="cell in row.cells" :key="cell.id">
           <div class="position-color-item">
-            <div :class="`color-item color-item-${col}`"></div>
-            <div :class="`color-item-blur color-item-${col}-blur`"></div>
+            <div :class="`color-item color-item-${cell.color}`"></div>
+            <div :class="`color-item-blur color-item-${cell.color}-blur`"></div>
           </div>
-          <div class="frame-layout">
+          <div class="frame-layout" v-if="cell.number !== undefined">
             <div class="number-frame"></div>
-            <div class="number-items">{{ col }}</div>
+            <div class="number-items">
+              {{ cell.number }}
+            </div>
           </div>
         </div>
       </div>
@@ -20,6 +22,38 @@
 <script>
 export default {
   name: 'GridComponent',
+  data() {
+    return {
+      gridData: [
+        {
+          id: 1,
+          cells: [
+            { id: 1, color: 1, number: 4 },
+            { id: 2, color: 2, number: 2 },
+            { id: 3, color: 3, number: 5 },
+            { id: 4 },
+            { id: 5 },
+          ],
+        },
+        {
+          id: 2,
+          cells: [{ id: 6 }, { id: 7 }, { id: 8 }, { id: 9 }, { id: 10 }],
+        },
+        {
+          id: 3,
+          cells: [{ id: 11 }, { id: 12 }, { id: 13 }, { id: 14 }, { id: 15 }],
+        },
+        {
+          id: 4,
+          cells: [{ id: 16 }, { id: 17 }, { id: 18 }, { id: 19 }, { id: 20 }],
+        },
+        {
+          id: 5,
+          cells: [{ id: 21 }, { id: 22 }, { id: 23 }, { id: 24 }, { id: 25 }],
+        },
+      ],
+    }
+  },
 }
 </script>
 
