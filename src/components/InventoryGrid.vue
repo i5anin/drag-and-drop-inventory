@@ -1,6 +1,6 @@
 <template>
   <div class="container-grid">
-    <div class="main-grid">
+    <div class="main_grid">
       <div class="line border" v-for="row in 5" :key="row">
         <div class="cell" v-for="col in 5" :key="col">
           <div class="position-color-item">
@@ -30,15 +30,17 @@ export default {
   background: #1d1d1d;
 }
 
-.main-grid {
+.main_grid {
   left: 292px;
   top: 32px;
   position: absolute;
   border-radius: 12px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
   display: inline-flex;
   background: #262626;
   border: 0.5px #4d4d4d solid;
-  flex-wrap: wrap; /* Добавлено для переноса на новую строку */
 }
 
 .number-frame {
@@ -53,8 +55,9 @@ export default {
 }
 
 .line {
+  justify-content: flex-start;
+  align-items: flex-start;
   display: inline-flex;
-  flex-wrap: wrap; /* Добавлено для переноса на новую строку */
 }
 
 .border:not(:last-child) {
