@@ -29,8 +29,8 @@ export default {
         { id: 2, name: 'Item 2' },
         { id: 3, name: 'Item 3' },
       ],
-      maxInventorySize: 25, // Maximum size of the inventory
-      currentInventory: [], // Data property to hold the current inventory
+      maxInventorySize: 25, // Максимальный размер инвентаря
+      currentInventory: [], // Свойство данных для хранения текущей инвентаризации
     }
   },
   created() {
@@ -51,7 +51,7 @@ export default {
     },
     checkMove(evt) {
       if (evt.draggedContext.element.name === null) {
-        return false // Cancel the drag operation for empty cells
+        return false // Отмена операции перетаскивания для пустых ячеек
       }
     },
   },
