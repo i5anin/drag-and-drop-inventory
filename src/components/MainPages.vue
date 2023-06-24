@@ -17,7 +17,7 @@
         <div v-else class="block empty"></div>
       </template>
     </div>
-    <ItemView />
+    <ItemView :selected-color="selectedColor" />
   </div>
 </template>
 
@@ -35,33 +35,29 @@ export default {
   setup() {
     const draggingEnterIndex = ref(null)
 
-    const dragEnter = (index) => {
-      draggingEnterIndex.value = index
-    }
-    const grid = reactive(loadPositions())
+    const draggable = reactive({ from: null, to: null })
+
+    const grid = reactive([...loadPositions()])
     const selectedCard = ref(null)
     const draggingIndex = ref(null)
 
     const dragStart = (index) => {
-      draggingIndex.value = index
+      draggable.from = index
     }
 
     const dragOver = (index) => {
-      if (draggingIndex.value !== null) {
-        const draggedColor = grid[draggingIndex.value]
-        grid.splice(draggingIndex.value, 1)
-        grid.splice(index, 0, draggedColor)
-        draggingIndex.value = index
-      } else if (draggingEnterIndex.value !== null) {
-        const draggedColor = grid[draggingEnterIndex.value]
-        grid.splice(draggingEnterIndex.value, 1)
-        grid.splice(index, 0, draggedColor)
-        draggingEnterIndex.value = index
-      }
+      draggable.to = index
     }
 
     const dragEnd = () => {
-      draggingIndex.value = null
+      const toElem = grid[draggable.to]
+      const fromElem = grid[draggable.from]
+      grid.splice(draggable.to, 1, fromElem)
+      grid.splice(draggable.from, 1, toElem)
+
+      draggable.from = null
+      draggable.to = null
+
       savePositions(grid)
     }
 
@@ -96,7 +92,6 @@ export default {
       isSelected,
       selectedColor,
       draggingEnterIndex,
-      dragEnter,
     }
   },
 }

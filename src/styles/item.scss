@@ -1,10 +1,33 @@
-.block {
+.wrapper {
+  position: relative;
+}
+
+.parent {
+  position: absolute !important;
   padding: 25px;
-  outline: 1px solid rgb(126, 126, 126);
+  border: 1px solid rgb(126, 126, 126);
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto;
   align-items: end;
+  z-index: 10;
+}
+
+
+.block {
+  position: relative;
+  padding: 25px;
+  border: 1px solid rgb(126, 126, 126);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  align-items: end;
+  z-index: 9;
+}
+
+.dragging {
+  cursor: move;
+  border-radius: 12px;
 }
 
 .glass-effect {

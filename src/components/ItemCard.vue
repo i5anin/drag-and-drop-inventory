@@ -1,20 +1,24 @@
 <!-- ItemCard.vue -->
 <template>
-  <div
-    class="block"
-    draggable="true"
-    @dragstart="dragStart"
-    @dragover="dragOver"
-    @dragend="dragEnd"
-    @dragenter="dragEnter"
-    @click="selectCard"
-    :class="{ selected: isSelected, empty: color.name === null }"
-  >
+  <div class="wrapper">
     <div
-      class="glass-effect"
-      :style="{ backgroundColor: colorWithAlpha }"
-    ></div>
-    <div class="color-card" :style="{ backgroundColor: color.name }">
+      class="block"
+      :draggable="color.name != null"
+      @dragstart="dragStart"
+      @dragover="dragOver"
+      @dragend="dragEnd"
+      @click="selectCard"
+      :class="{
+        selected: isSelected,
+        empty: color.name === null,
+        dragging: isDrag,
+      }"
+    >
+      <div
+        class="glass-effect"
+        :style="{ backgroundColor: colorWithAlpha }"
+      ></div>
+      <div class="color-card" :style="{ backgroundColor: color.name }"></div>
       <p v-if="color.quantity !== null" class="color-quantity">
         {{ color.quantity }}
       </p>
@@ -38,14 +42,16 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      isDrag: false,
+    }
+  },
   emits: ['dragstart', 'dragover', 'dragend', 'click'],
   methods: {
-    // Обработчик события dragenter
-    dragEnter() {
-      this.$emit('dragenter', this.index)
-    },
     // Обработчик события dragstart
     dragStart() {
+      this.isDrag = true
       this.$emit('dragstart', this.index)
     },
     // Обработчик события dragover
@@ -54,10 +60,14 @@ export default {
     },
     // Обработчик события dragend
     dragEnd() {
+      this.isDrag = false
       this.$emit('dragend')
     },
     // Обработчик события click для выбора карты
     selectCard() {
+      if (this.color.name == null) {
+        return
+      }
       this.$emit('click', this.index)
     },
     // Преобразование цвета в формат RGBA с заданным значением альфа-канала
