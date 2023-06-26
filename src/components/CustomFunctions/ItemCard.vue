@@ -1,6 +1,7 @@
 <!-- ItemCard.vue -->
 <template>
   <div class="wrapper">
+    <!-- Карточка элемента -->
     <div
       class="block"
       :draggable="color.name != null"
@@ -8,17 +9,19 @@
       @dragover="dragOver"
       @dragend="dragEnd"
       @click="selectCard"
-      :class="{
-        selected: isSelected,
-        empty: color.name === null,
-      }"
+      :class="{ selected: isSelected, empty: color.name === null }"
     >
+      <!-- Эффект стекла -->
       <div
         class="glass-effect"
         :style="{ backgroundColor: colorWithAlpha }"
       ></div>
-      <div class="color-card" :style="{ backgroundColor: color.name }"></div>
-      <p v-if="color.quantity !== null" class="color-quantity">
+
+      <!-- Содержимое карточки -->
+      <div class="card-content" :style="{ backgroundColor: color.name }"></div>
+
+      <!-- Количество цвета -->
+      <p v-if="color.quantity !== null" class="quantity-content">
         {{ color.quantity }}
       </p>
     </div>
@@ -51,9 +54,11 @@ export default {
   methods: {
     // Обработчик события dragstart
     dragStart(event) {
+      // Клонируем элемент и добавляем ему класс "dragging"
       const element = event.srcElement.cloneNode(true)
       element.classList.add('dragging')
 
+      // Добавляем клонированный элемент в body
       document.body.appendChild(element)
       this.element = element
       event.dataTransfer.setDragImage(element, 50, 50)
@@ -113,17 +118,12 @@ export default {
 }
 
 .block {
-  /* position: relative; */
   padding: 0px;
   border: 0.5px #4d4d4d solid;
-  /* ... */
   display: flex;
   justify-content: center;
   align-items: center;
-  /* ... */
-  /* z-index: 9; */
   background: #262626;
-
   width: 105px;
   height: 100px;
   position: relative;
@@ -140,24 +140,20 @@ export default {
   height: 48px;
   backdrop-filter: blur(6px);
   z-index: 2;
-  /* ... */
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(55%, 45%);
-  /* ... */
   left: 6px;
   top: 0px;
   position: absolute;
 }
 
-.color-card {
-  /* ... */
+.card-content {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(55%, 45%);
-  /* ... */
   position: absolute;
   width: 48px;
   height: 48px;
@@ -167,7 +163,7 @@ export default {
   position: absolute;
 }
 
-.color-quantity {
+.quantity-content {
   width: 16px;
   height: 16px;
   left: 0px;
@@ -176,7 +172,6 @@ export default {
   background: #262626;
   border-top-left-radius: 6px;
   border: 0.5px #4d4d4d solid;
-
   width: 8px;
   height: 12px;
   left: 4px;
