@@ -168,11 +168,27 @@ export default {
 }
 
 .color-quantity {
+  width: 16px;
+  height: 16px;
+  left: 0px;
+  top: 0px;
   position: absolute;
-  bottom: 5px;
-  right: 5px;
-  color: #fff;
-  font-size: 12px;
+  background: #262626;
+  border-top-left-radius: 6px;
+  border: 0.5px #4d4d4d solid;
+
+  width: 8px;
+  height: 12px;
+  left: 4px;
+  top: 2px;
+  position: absolute;
+  opacity: 0.4;
+  text-align: center;
+  color: white;
+  font-size: 10px;
+  font-family: Inter;
+  font-weight: 500;
+  word-wrap: break-word;
 }
 
 .color-item-blur {
