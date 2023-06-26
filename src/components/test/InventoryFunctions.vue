@@ -25,9 +25,10 @@ export default {
   data() {
     return {
       initialInventory: [
-        { id: 1, name: 'Item 1' },
-        { id: 2, name: 'Item 2' },
-        { id: 3, name: 'Item 3' },
+        { id: 1, name: 'Style 1' },
+        { id: 2, name: 'Style 2' },
+        { id: 3, name: 'Style 3' },
+        { id: 4, name: 'Style 4' },
       ],
       maxInventorySize: 25, // Максимальный размер инвентаря
       currentInventory: [], // Свойство данных для хранения текущей инвентаризации
