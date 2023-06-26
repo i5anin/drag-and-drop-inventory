@@ -1,4 +1,3 @@
-<!-- MainPages.vue -->
 <template>
   <div class="container">
     <div class="grid">
@@ -17,14 +16,14 @@
         <div v-else class="block empty"></div>
       </template>
     </div>
-    <ItemView :selected-color="selectedColor" />
+    <ItemView v-if="selectedCard !== null" :selected-color="selectedColor" />
   </div>
 </template>
 
 <script>
 import ItemCard from '@/components/ItemCard.vue'
 import ItemView from '@/components/ItemView.vue'
-import { reactive, ref, computed, watch } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { savePositions, loadPositions } from '@/services/localStorage.js'
 
 export default {
@@ -34,31 +33,29 @@ export default {
   },
   setup() {
     const draggingEnterIndex = ref(null)
-
-    const draggable = reactive({ from: null, to: null })
-
-    const grid = reactive([...loadPositions()])
+    const grid = ref(loadPositions())
     const selectedCard = ref(null)
-    const draggingIndex = ref(null)
+
+    const draggable = ref({ from: null, to: null })
 
     const dragStart = (index) => {
-      draggable.from = index
+      draggable.value.from = index
     }
 
     const dragOver = (index) => {
-      draggable.to = index
+      draggable.value.to = index
     }
 
     const dragEnd = () => {
-      const toElem = grid[draggable.to]
-      const fromElem = grid[draggable.from]
-      grid.splice(draggable.to, 1, fromElem)
-      grid.splice(draggable.from, 1, toElem)
+      const toElem = grid.value[draggable.value.to]
+      const fromElem = grid.value[draggable.value.from]
+      grid.value.splice(draggable.value.to, 1, fromElem)
+      grid.value.splice(draggable.value.from, 1, toElem)
 
-      draggable.from = null
-      draggable.to = null
+      draggable.value.from = null
+      draggable.value.to = null
 
-      savePositions(grid)
+      savePositions(grid.value)
     }
 
     const selectCard = (index) => {
@@ -70,28 +67,24 @@ export default {
     }
 
     const selectedColor = computed(() => {
-      if (selectedCard.value !== null) {
-        return grid[selectedCard.value]
-      }
-      return null
+      return selectedCard.value !== null ? grid.value[selectedCard.value] : null
     })
 
     // Сохранение позиций цветов в localStorage
     watch(grid, () => {
-      savePositions(grid)
+      savePositions(grid.value)
     })
 
     return {
       grid,
       selectedCard,
-      draggingIndex,
+      draggingEnterIndex,
       dragStart,
       dragOver,
       dragEnd,
       selectCard,
       isSelected,
       selectedColor,
-      draggingEnterIndex,
     }
   },
 }
