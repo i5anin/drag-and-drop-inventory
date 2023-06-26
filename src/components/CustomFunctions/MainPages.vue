@@ -13,7 +13,7 @@
           @dragend="dragEnd"
           @click="selectCard(index)"
         ></ItemCard>
-        <div v-else class="block empty"></div>
+        <div v-else class="cell empty"></div>
       </template>
     </div>
     <ItemView v-if="selectedCard !== null" :selected-color="selectedColor" />
@@ -23,8 +23,8 @@
 <script>
 import ItemCard from '@/components/CustomFunctions/ItemCard.vue'
 import ItemView from '@/components/CustomFunctions/ItemView.vue'
-import { ref, computed, watch } from 'vue'
 import { savePositions, loadPositions } from '@/services/localStorage.js'
+import { ref, computed, watch } from 'vue'
 
 export default {
   components: {
@@ -131,5 +131,24 @@ export default {
   right: 5px;
   color: #fff;
   font-size: 12px;
+}
+.cell:nth-child(0) {
+  /* Левый верхний угол */
+  border-top-left-radius: 12px;
+}
+
+.cell:nth-child(5) {
+  /* Правый верхний угол */
+  border-top-right-radius: 12px;
+}
+
+.cell:nth-child(21) {
+  /* Левый нижний угол */
+  border-bottom-left-radius: 12px;
+}
+
+.cell:nth-child(25) {
+  /* Правый нижний угол */
+  border-bottom-right-radius: 12px;
 }
 </style>

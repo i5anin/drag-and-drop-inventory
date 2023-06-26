@@ -120,10 +120,11 @@ export default {
   position: relative;
   padding: 0px;
   border: 0.5px #4d4d4d solid;
-  /* display: grid; 
-  grid-template-columns: 1fr;
-  grid-template-rows: auto;
-  align-items: end; */
+  /* ... */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* ... */
   z-index: 9;
   background: #262626;
 
@@ -142,15 +143,31 @@ export default {
   height: 48px;
   backdrop-filter: blur(6px);
   z-index: 2;
-  margin-top: -10px;
-  margin-left: 10px;
+  /* ... */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(55%, 45%);
+  /* ... */
+  left: 6px;
+  top: 0px;
+  position: absolute;
 }
 
 .color-card {
+  /* ... */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(55%, 45%);
+  /* ... */
   position: absolute;
   width: 48px;
   height: 48px;
   z-index: 1;
+  left: 0px;
+  top: 6px;
+  position: absolute;
 }
 
 .color-quantity {
