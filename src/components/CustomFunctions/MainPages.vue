@@ -112,6 +112,8 @@ export default {
 .grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  border-radius: 12px;
+  overflow: hidden;
   /* gap: 10px; */
 }
 
@@ -133,24 +135,32 @@ export default {
   font-size: 12px;
 }
 .grid {
-  > :nth-child(1) {
-    /* Левый верхний угол */
-    border-top-left-radius: 12px;
+  :nth-child(1) {
+    .block {
+      /* Левый верхний угол */
+      border-top-left-radius: 12px;
+    }
   }
 
-  > :nth-child(5) {
-    /* Правый верхний угол */
-    border-top-right-radius: 12px;
+  :nth-child(5) {
+    .block {
+      /* Правый верхний угол */
+      border-top-right-radius: 12px;
+    }
   }
 
-  > :nth-child(21) {
-    /* Левый нижний угол */
-    border-bottom-left-radius: 12px;
+  :nth-child(21) {
+    .block {
+      /* Левый нижний угол */
+      border-bottom-left-radius: 12px;
+    }
   }
 
-  > :nth-child(25) {
-    /* Правый нижний угол */
-    border-bottom-right-radius: 12px;
+  :nth-child(25) {
+    .block {
+      /* Правый нижний угол */
+      border-bottom-right-radius: 12px;
+    }
   }
 }
 </style>

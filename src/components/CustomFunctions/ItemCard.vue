@@ -11,7 +11,6 @@
       :class="{
         selected: isSelected,
         empty: color.name === null,
-        dragging: isDrag,
       }"
     >
       <div
@@ -45,12 +44,20 @@ export default {
   data() {
     return {
       isDrag: false,
+      element: null,
     }
   },
   emits: ['dragstart', 'dragover', 'dragend', 'click'],
   methods: {
     // Обработчик события dragstart
-    dragStart() {
+    dragStart(event) {
+      const element = event.srcElement.cloneNode(true)
+      element.classList.add('dragging')
+
+      document.body.appendChild(element)
+      this.element = element
+      event.dataTransfer.setDragImage(element, 50, 50)
+
       this.isDrag = true
       this.$emit('dragstart', this.index)
     },
@@ -105,17 +112,6 @@ export default {
   position: relative;
 }
 
-.parent {
-  position: absolute !important;
-  padding: 25px;
-  border: 0.5px solid rgb(126, 126, 126);
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto;
-  align-items: end;
-  z-index: 10;
-}
-
 .block {
   /* position: relative; */
   padding: 0px;
@@ -134,8 +130,9 @@ export default {
 }
 
 .dragging {
-  cursor: move;
-  border-radius: 12px;
+  border-radius: 24px;
+  z-index: 111;
+  left: -1000px;
 }
 
 .glass-effect {
