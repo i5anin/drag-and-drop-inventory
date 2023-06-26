@@ -9,9 +9,7 @@ import InventoryPage from '@/pages/InventoryPage.vue'
 
 export default {
   name: 'App',
-  components: {
-    InventoryPage,
-  },
+  components: { InventoryPage },
 }
 </script>
 

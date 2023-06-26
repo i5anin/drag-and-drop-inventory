@@ -3,7 +3,7 @@
     <InventoryInfo />
     <InventoryGrid />
     <InventoryFooter />
-    <InventoryFunctions />
+    <!-- <InventoryFunctions /> -->
     <MainPages />
   </div>
 </template>
@@ -11,7 +11,7 @@
 import InventoryInfo from '@/components/InventoryInfo.vue'
 import InventoryGrid from '@/components/InventoryGrid.vue'
 import InventoryFooter from '@/components/InventoryFooter.vue'
-import InventoryFunctions from '@/components/test/InventoryFunctions.vue'
+// import InventoryFunctions from '@/components/test/InventoryFunctions.vue'
 import MainPages from '@/components/CustomFunctions/MainPages.vue'
 
 export default {
@@ -19,7 +19,7 @@ export default {
     InventoryInfo,
     InventoryGrid,
     InventoryFooter,
-    InventoryFunctions,
+    // InventoryFunctions,
     MainPages,
   },
 }

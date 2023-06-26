@@ -75,7 +75,7 @@ export default {
       if (hex === null) {
         return // Обработка случая, когда значение цвета равно null
       }
-      const shiftAmount = 150 // Значение сдвига
+      const shiftAmount = 50 // Значение сдвига
 
       // Получить значения R, G и B из HEX
       let r = parseInt(hex.slice(1, 3), 16)
@@ -108,7 +108,7 @@ export default {
 .parent {
   position: absolute !important;
   padding: 25px;
-  border: 1px solid rgb(126, 126, 126);
+  border: 0.5px solid rgb(126, 126, 126);
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto;
@@ -118,13 +118,18 @@ export default {
 
 .block {
   position: relative;
-  padding: 25px;
-  border: 1px solid rgb(126, 126, 126);
-  display: grid;
+  padding: 0px;
+  border: 0.5px #4d4d4d solid;
+  /* display: grid; 
   grid-template-columns: 1fr;
   grid-template-rows: auto;
-  align-items: end;
+  align-items: end; */
   z-index: 9;
+  background: #262626;
+
+  width: 105px;
+  height: 100px;
+  position: relative;
 }
 
 .dragging {
@@ -133,18 +138,18 @@ export default {
 }
 
 .glass-effect {
-  width: 100px;
-  height: 100px;
+  width: 48px;
+  height: 48px;
   backdrop-filter: blur(6px);
   z-index: 2;
-  margin-top: -25px;
-  margin-left: 25px;
+  margin-top: -10px;
+  margin-left: 10px;
 }
 
 .color-card {
   position: absolute;
-  width: 100px;
-  height: 100px;
+  width: 48px;
+  height: 48px;
   z-index: 1;
 }
 
@@ -154,5 +159,14 @@ export default {
   right: 5px;
   color: #fff;
   font-size: 12px;
+}
+
+.color-item-blur {
+  width: 48px;
+  height: 48px;
+  left: 6px;
+  top: 0px;
+  position: absolute;
+  backdrop-filter: blur(6px);
 }
 </style>

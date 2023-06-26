@@ -112,7 +112,7 @@ export default {
 .grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
+  /* gap: 10px; */
 }
 
 .grid div {
