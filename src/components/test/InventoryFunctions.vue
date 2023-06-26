@@ -9,9 +9,9 @@
     <template #item="{ element }">
       <div
         class="draggable-item"
-        :class="{ placeholder: element.name === null }"
+        :class="{ placeholder: isPlaceholder(element) }"
       >
-        {{ element.name || ' ' }}
+        {{ getItemName(element) }}
       </div>
     </template>
   </draggable>
@@ -29,8 +29,8 @@ export default {
         { id: 2, name: 'Item 2' },
         { id: 3, name: 'Item 3' },
       ],
-      maxInventorySize: 25, // Максимальный размер инвентаря
-      currentInventory: [], // Свойство данных для хранения текущей инвентаризации
+      maxInventorySize: 25,
+      currentInventory: [],
     }
   },
   created() {
@@ -50,7 +50,13 @@ export default {
       this.currentInventory = [...this.initialInventory, ...emptyItems]
     },
     checkMove(evt) {
-      return evt.draggedContext.element.name !== null
+      return this.getItemName(evt.draggedContext.element) !== null
+    },
+    isPlaceholder(item) {
+      return item.name === null
+    },
+    getItemName(item) {
+      return item.name || ' '
     },
   },
 }
