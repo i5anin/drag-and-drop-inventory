@@ -1,4 +1,5 @@
 <!-- ItemCard.vue -->
+l
 <template>
   <div class="wrapper">
     <!-- Карточка элемента -->
@@ -20,10 +21,10 @@
       <!-- Содержимое карточки -->
       <div class="card-content" :style="{ backgroundColor: color.name }"></div>
 
-      <!-- Количество цвета -->
-      <p v-if="color.quantity !== null" class="quantity-content">
+      <!-- Количество контента -->
+      <div v-if="color.quantity !== null" class="number-frame">
         {{ color.quantity }}
-      </p>
+      </div>
     </div>
   </div>
 </template>
@@ -163,7 +164,7 @@ export default {
   position: absolute;
 }
 
-.quantity-content {
+.number-frame {
   width: 16px;
   height: 16px;
   left: 0px;

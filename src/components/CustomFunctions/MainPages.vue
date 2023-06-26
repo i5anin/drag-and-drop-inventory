@@ -117,13 +117,13 @@ export default {
   /* gap: 10px; */
 }
 
-.grid div {
+.wrapper {
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.grid div.selected {
+.wrapper.selected {
   outline: 2px solid #fff;
 }
 
