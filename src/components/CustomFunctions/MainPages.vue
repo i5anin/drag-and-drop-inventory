@@ -90,7 +90,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .container {
   display: flex;
   background: #1e1e1e;
@@ -132,23 +132,25 @@ export default {
   color: #fff;
   font-size: 12px;
 }
-.cell:nth-child(0) {
-  /* Левый верхний угол */
-  border-top-left-radius: 12px;
-}
+.grid {
+  > :nth-child(1) {
+    /* Левый верхний угол */
+    border-top-left-radius: 12px;
+  }
 
-.cell:nth-child(5) {
-  /* Правый верхний угол */
-  border-top-right-radius: 12px;
-}
+  > :nth-child(5) {
+    /* Правый верхний угол */
+    border-top-right-radius: 12px;
+  }
 
-.cell:nth-child(21) {
-  /* Левый нижний угол */
-  border-bottom-left-radius: 12px;
-}
+  > :nth-child(21) {
+    /* Левый нижний угол */
+    border-bottom-left-radius: 12px;
+  }
 
-.cell:nth-child(25) {
-  /* Правый нижний угол */
-  border-bottom-right-radius: 12px;
+  > :nth-child(25) {
+    /* Правый нижний угол */
+    border-bottom-right-radius: 12px;
+  }
 }
 </style>
