@@ -117,7 +117,7 @@ export default {
 }
 
 .block {
-  position: relative;
+  /* position: relative; */
   padding: 0px;
   border: 0.5px #4d4d4d solid;
   /* ... */
@@ -125,7 +125,7 @@ export default {
   justify-content: center;
   align-items: center;
   /* ... */
-  z-index: 9;
+  /* z-index: 9; */
   background: #262626;
 
   width: 105px;
