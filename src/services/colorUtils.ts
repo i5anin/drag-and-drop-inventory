@@ -1,8 +1,11 @@
-// colorUtils.js
-export function hexToRGBA(hex, alpha) {
+export function hexToRGBA(
+  hex: string | null,
+  alpha: number
+): string | undefined {
   if (hex === null) {
-    return // Обработка случая, когда значение цвета равно null
+    return undefined // Обработка случая, когда значение цвета равно null
   }
+
   const shiftAmount = 50 // Значение сдвига
 
   // Получить значения R, G и B из HEX
