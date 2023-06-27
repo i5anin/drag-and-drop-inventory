@@ -1,9 +1,7 @@
-export function hexToRGBA(
-  hex: string | null,
-  alpha: number
-): string | undefined {
+// colorUtils.js
+export function hexToRGBA(hex, alpha) {
   if (hex === null) {
-    return undefined // Обработка случая, когда значение цвета равно null
+    return // Обработка случая, когда значение цвета равно null
   }
   const shiftAmount = 50 // Значение сдвига
 
