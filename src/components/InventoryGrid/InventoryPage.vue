@@ -16,20 +16,20 @@
         <div v-else class="cell empty"></div>
       </template>
     </div>
-    <ItemView v-if="selectedCard !== null" :selected-color="selectedColor" />
+    <ModalView v-if="selectedCard !== null" :selected-color="selectedColor" />
   </div>
 </template>
 
 <script>
 import ItemCard from '@/components/InventoryGrid/ItemCard.vue'
-import ItemView from '@/components/InventoryGrid/ItemView.vue'
+import ModalView from '@/components/InventoryGrid/ModalView.vue'
 import { savePositions, loadPositions } from '@/services/localStorage.js'
 import { ref, computed, watch } from 'vue'
 
 export default {
   components: {
     ItemCard,
-    ItemView,
+    ModalView,
   },
   setup() {
     const draggingEnterIndex = ref(null)
