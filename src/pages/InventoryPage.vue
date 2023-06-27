@@ -1,26 +1,23 @@
 <template>
   <div>
     <InventoryInfo />
-    <InventoryGrid />
+    <TableStylesOnly />
     <InventoryFooter />
-    <!-- <InventoryFunctions /> -->
-    <MainPages />
+    <InventoryPage />
   </div>
 </template>
 <script>
 import InventoryInfo from '@/components/InventoryInfo.vue'
-import InventoryGrid from '@/components/InventoryGrid.vue'
+import TableStylesOnly from '@/components/TableStylesOnly.vue'
 import InventoryFooter from '@/components/InventoryFooter.vue'
-// import InventoryFunctions from '@/components/test/InventoryFunctions.vue'
-import MainPages from '@/components/CustomFunctions/MainPages.vue'
+import InventoryPage from '@/components/InventoryGrid/InventoryPage.vue'
 
 export default {
   components: {
     InventoryInfo,
-    InventoryGrid,
+    TableStylesOnly,
     InventoryFooter,
-    // InventoryFunctions,
-    MainPages,
+    InventoryPage,
   },
 }
 </script>

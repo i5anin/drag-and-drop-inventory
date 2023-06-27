@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="main_grid">
     <div class="grid">
       <template v-for="(color, index) in grid" :key="index">
         <ItemCard
@@ -21,8 +21,8 @@
 </template>
 
 <script>
-import ItemCard from '@/components/CustomFunctions/ItemCard.vue'
-import ItemView from '@/components/CustomFunctions/ItemView.vue'
+import ItemCard from '@/components/InventoryGrid/ItemCard.vue'
+import ItemView from '@/components/InventoryGrid/ItemView.vue'
 import { savePositions, loadPositions } from '@/services/localStorage.js'
 import { ref, computed, watch } from 'vue'
 
@@ -91,6 +91,19 @@ export default {
 </script>
 
 <style lang="scss">
+.main_grid {
+  left: 292px;
+  top: 32px;
+  position: absolute;
+  border-radius: 12px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  display: inline-flex;
+  background: #262626;
+  border: 0.5px #4d4d4d solid;
+}
+
 .container {
   display: flex;
   background: #1e1e1e;
