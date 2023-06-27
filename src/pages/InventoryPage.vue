@@ -29,6 +29,6 @@ export default {
 }
 
 .content {
-  position: absolute;
+  /* position: absolute; */
 }
 </style>
