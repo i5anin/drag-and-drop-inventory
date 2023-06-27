@@ -1,6 +1,6 @@
 interface ColorPosition {
-  name: string | null
-  quantity: number | null
+  name: string | null;
+  quantity: number | null;
 }
 
 // Сохранение позиций цветов в localStorage

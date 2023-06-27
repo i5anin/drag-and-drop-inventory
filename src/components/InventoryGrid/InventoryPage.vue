@@ -23,7 +23,7 @@
 <script>
 import ItemCard from '@/components/InventoryGrid/ItemCard.vue'
 import ModalView from '@/components/InventoryGrid/ModalView.vue'
-// import { savePositions, loadPositions } from '@/services/localStorage.js'
+import { savePositions, loadPositions } from '@/services/localStorage.js'
 import { ref, computed, watch } from 'vue'
 
 export default {
