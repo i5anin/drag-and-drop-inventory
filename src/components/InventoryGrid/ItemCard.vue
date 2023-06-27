@@ -125,8 +125,8 @@ export default {
   justify-content: center;
   align-items: center;
   background: #262626;
-  width: 105px;
-  height: 100px;
+  width: 103px;
+  height: 98px;
   position: relative;
 }
 
