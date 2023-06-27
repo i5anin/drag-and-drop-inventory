@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { hexToRGBA } from './colorUtils.js'
+import { hexToRGBA } from '@/services/colorUtils.js'
 
 export default {
   props: {
