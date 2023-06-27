@@ -1,27 +1,29 @@
 <!-- ItemCard.vue -->
-l
 <template>
   <div class="wrapper">
-    <!-- Карточка элемента -->
     <div
       class="block"
-      :draggable="color.name != null"
+      :draggable="color.name !== null"
       @dragstart="dragStart"
       @dragover="dragOver"
       @dragend="dragEnd"
       @click="selectCard"
       :class="{ selected: isSelected, empty: color.name === null }"
     >
-      <!-- Эффект стекла -->
+      <!-- Условный рендеринг эффекта стекла -->
       <div
+        v-if="color.name !== null"
         class="glass-effect"
         :style="{ backgroundColor: colorWithAlpha }"
       ></div>
 
-      <!-- Содержимое карточки -->
-      <div class="card-content" :style="{ backgroundColor: color.name }"></div>
+      <!-- Условный рендеринг содержимого карты -->
+      <div
+        v-if="color.name !== null"
+        class="card-content"
+        :style="{ backgroundColor: color.name }"
+      ></div>
 
-      <!-- Количество контента -->
       <div v-if="color.quantity !== null" class="number-frame">
         {{ color.quantity }}
       </div>
