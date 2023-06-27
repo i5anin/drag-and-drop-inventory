@@ -1,24 +1,22 @@
 <template>
   <div>
-    <MainPages />
+    <InventoryPage />
   </div>
 </template>
 
 <script>
-import MainPages from '@/components/MainPages.vue'
+import InventoryPage from '@/pages/InventoryPage.vue'
 
 export default {
   name: 'App',
-  components: {
-    MainPages,
-  },
+  components: { InventoryPage },
 }
 </script>
 
 <style>
 body {
-  /* Стили по умолчанию для body */
   background-color: #1e1e1e;
-  color: #fff;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 </style>
