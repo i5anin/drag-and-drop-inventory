@@ -1,96 +1,114 @@
 <template>
-  <div class="main_grid">
+  <div class="main-grid">
     <div class="grid">
-      <template v-for="(color, index) in grid" :key="index">
+      <template v-for="(color, index) in colorGrid" :key="index">
         <ItemCard
-          v-if="color !== null"
-          :key="index"
+          v-if="color"
           :color="color"
           :index="index"
-          :isSelected="isSelected(index)"
-          @dragstart="dragStart(index)"
-          @dragover="dragOver(index)"
-          @dragend="dragEnd"
-          @click="selectCard(index)"
-        ></ItemCard>
+          :isSelected="isCardSelected(index)"
+          @dragstart="handleDragStart(index)"
+          @dragover="handleDragOver(index)"
+          @dragend="handleDragEnd"
+          @click="toggleCardSelection(index)"
+        />
         <div v-else class="cell empty"></div>
       </template>
     </div>
-    <ModalView v-if="selectedCard !== null" :selected-color="selectedColor" />
+    <ItemView v-if="selectedColor" :selected-color="selectedColor" />
   </div>
 </template>
 
+
 <script>
-import ItemCard from './ColorCard.vue'
-import ModalView from '@/components/modal/ModalView.vue'
-import { savePositions, loadPositions } from '@/utils/localStorage.js'
 import { ref, computed, watch } from 'vue'
+import ItemCard from './ItemCard.vue'
+import ItemView from './ItemView.vue'
+import { savePositions, loadPositions } from '@/utils/localStorage.js'
 
 export default {
+  name: 'MainGrid',
   components: {
     ItemCard,
-    ModalView,
+    ItemView,
   },
   setup() {
-    const draggingEnterIndex = ref(null)
-    const grid = ref(loadPositions())
-    const selectedCard = ref(null)
+    const colorGrid = ref(loadPositions())
+    const selectedIndex = ref(null)
+    const dragState = ref({ fromIndex: null, toIndex: null })
 
-    const draggable = ref({ from: null, to: null })
-
-    const dragStart = (index) => {
-      draggable.value.from = index
+    const handleDragStart = (index) => {
+      dragState.value.fromIndex = index
     }
 
-    const dragOver = (index) => {
-      draggable.value.to = index
+    const handleDragOver = (index) => {
+      dragState.value.toIndex = index
     }
 
-    const dragEnd = () => {
-      const toElem = grid.value[draggable.value.to]
-      const fromElem = grid.value[draggable.value.from]
-      grid.value.splice(draggable.value.to, 1, fromElem)
-      grid.value.splice(draggable.value.from, 1, toElem)
-
-      draggable.value.from = null
-      draggable.value.to = null
-
-      savePositions(grid.value)
+    const handleDragEnd = () => {
+      const { fromIndex, toIndex } = dragState.value
+      if (fromIndex !== null && toIndex !== null && fromIndex !== toIndex) {
+        [colorGrid.value[fromIndex], colorGrid.value[toIndex]] = [
+          colorGrid.value[toIndex],
+          colorGrid.value[fromIndex],
+        ]
+        savePositions(colorGrid.value)
+      }
+      dragState.value = { fromIndex: null, toIndex: null }
     }
 
-    const selectCard = (index) => {
-      selectedCard.value = index === selectedCard.value ? null : index
+    const toggleCardSelection = (index) => {
+      selectedIndex.value = selectedIndex.value === index ? null : index
     }
 
-    const isSelected = (index) => {
-      return index === selectedCard.value
-    }
+    const isCardSelected = (index) => selectedIndex.value === index
 
     const selectedColor = computed(() => {
-      return selectedCard.value !== null ? grid.value[selectedCard.value] : null
+      return selectedIndex.value !== null ? colorGrid.value[selectedIndex.value] : null
     })
 
-    // Сохранение позиций цветов в localStorage
-    watch(grid, () => {
-      savePositions(grid.value)
+    watch(colorGrid, () => {
+      savePositions(colorGrid.value)
     })
 
     return {
-      grid,
-      selectedCard,
-      draggingEnterIndex,
-      dragStart,
-      dragOver,
-      dragEnd,
-      selectCard,
-      isSelected,
+      colorGrid,
       selectedColor,
+      handleDragStart,
+      handleDragOver,
+      handleDragEnd,
+      toggleCardSelection,
+      isCardSelected,
     }
   },
 }
 </script>
 
+
 <style lang="scss">
+.main-grid {
+  position: absolute;
+  left: 292px;
+  top: 32px;
+  display: inline-flex;
+  flex-direction: column;
+  background: #262626;
+  border: 0.5px solid #4d4d4d;
+  border-radius: 12px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.cell.empty {
+  /* Styles for empty cells if needed */
+}
+
+
 .main_grid {
   left: 292px;
   top: 32px;
@@ -136,6 +154,7 @@ export default {
   justify-content: center;
   align-items: center;
 }
+
 .wrapper.selected {
   outline: 2px solid #fff;
 }
@@ -147,6 +166,7 @@ export default {
   color: #fff;
   font-size: 12px;
 }
+
 .grid {
   :nth-child(1) {
     .block {
