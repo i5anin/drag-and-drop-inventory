@@ -2,36 +2,25 @@
   <div class="wrapper">
     <div
       class="block"
-      :draggable="color.name !== null"
-      @dragstart="dragStart"
-      @dragover="dragOver"
-      @dragend="dragEnd"
-      @click="selectCard"
-      :class="{ selected: isSelected, empty: color.name === null }"
+      :draggable="isDraggable"
+      @dragstart="onDragStart"
+      @dragover="onDragOver"
+      @dragend="onDragEnd"
+      @click="onSelectCard"
+      :class="{
+        selected: isSelected,
+        empty: !isDraggable,
+      }"
     >
-      <!-- Условный рендеринг эффекта стекла -->
-      <div
-        v-if="color.name !== null"
-        class="glass-effect"
-        :style="{ backgroundColor: colorWithAlpha }"
-      ></div>
-
-      <!-- Условный рендеринг содержимого карты -->
-      <div
-        v-if="color.name !== null"
-        class="card-content"
-        :style="{ backgroundColor: color.name }"
-      ></div>
-
-      <div v-if="color.quantity !== null" class="number-frame">
-        {{ color.quantity }}
-      </div>
+      <div v-if="isDraggable" class="glass-effect" :style="{ backgroundColor: colorWithAlpha }"></div>
+      <div v-if="isDraggable" class="card-content" :style="{ backgroundColor: color.name }"></div>
+      <div v-if="color.quantity !== null" class="number-frame">{{ color.quantity }}</div>
     </div>
   </div>
 </template>
 
 <script>
-import { hexToRGBA } from '@/services/colorUtils.js'
+import { hexToRGBA } from '@/services/colorUtils.js';
 
 export default {
   props: {
@@ -50,51 +39,50 @@ export default {
   },
   data() {
     return {
-      isDrag: false,
-      element: null,
-    }
+      isDragging: false,
+      clonedElement: null,
+    };
   },
   emits: ['dragstart', 'dragover', 'dragend', 'click'],
-  methods: {
-    // Обработчик события dragstart
-    dragStart(event) {
-      // Клонируем элемент и добавляем ему класс "dragging"
-      const element = event.srcElement.cloneNode(true)
-      element.classList.add('dragging')
-
-      // Добавляем клонированный элемент в body
-      document.body.appendChild(element)
-      this.element = element
-      event.dataTransfer.setDragImage(element, 50, 50)
-
-      this.isDrag = true
-      this.$emit('dragstart', this.index)
-    },
-    // Обработчик события dragover
-    dragOver() {
-      this.$emit('dragover', this.index)
-    },
-    // Обработчик события dragend
-    dragEnd() {
-      this.isDrag = false
-      this.$emit('dragend')
-    },
-    // Обработчик события click для выбора карты
-    selectCard() {
-      if (this.color.name == null) {
-        return
-      }
-      this.$emit('click', this.index)
-    },
-  },
   computed: {
-    // Вычисление цвета с альфа-каналом для стиля glass-effect
+    isDraggable() {
+      return Boolean(this.color.name);
+    },
     colorWithAlpha() {
-      return hexToRGBA(this.color.name, 0.35) // Здесь 0.35 - значение альфа-канала (от 0 до 1)
+      return hexToRGBA(this.color.name, 0.35);
     },
   },
-}
+  methods: {
+    onDragStart(event) {
+      const clonedElement = event.target.cloneNode(true);
+      clonedElement.classList.add('dragging');
+      document.body.appendChild(clonedElement);
+
+      this.clonedElement = clonedElement;
+      this.isDragging = true;
+
+      event.dataTransfer.setDragImage(clonedElement, 50, 50);
+      this.$emit('dragstart', this.index);
+    },
+    onDragOver() {
+      this.$emit('dragover', this.index);
+    },
+    onDragEnd() {
+      if (this.clonedElement) {
+        document.body.removeChild(this.clonedElement);
+        this.clonedElement = null;
+      }
+      this.isDragging = false;
+      this.$emit('dragend');
+    },
+    onSelectCard() {
+      if (!this.isDraggable) return;
+      this.$emit('click', this.index);
+    },
+  },
+};
 </script>
+
 
 <style>
 .wrapper {
@@ -124,38 +112,26 @@ export default {
   height: 48px;
   backdrop-filter: blur(6px);
   z-index: 2;
-  position: absolute;
-  top: 50%;
-  left: 50%;
   transform: translate(55%, 45%);
   left: 6px;
-  top: 0px;
+  top: 0;
   position: absolute;
 }
 
 .card-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
   transform: translate(55%, 45%);
-  position: absolute;
   width: 48px;
   height: 48px;
   z-index: 1;
-  left: 0px;
+  left: 0;
   top: 6px;
   position: absolute;
 }
 
 .number-frame {
-  width: 16px;
-  height: 16px;
-  left: 0px;
-  top: 0px;
-  position: absolute;
   background: #262626;
   border-top-left-radius: 6px;
-  border: 0.5px #4d4d4d solid;
+  border: 1px #4d4d4d solid;
   width: 8px;
   height: 12px;
   left: 4px;
@@ -165,7 +141,7 @@ export default {
   text-align: center;
   color: white;
   font-size: 10px;
-  font-family: Inter;
+  font-family: Inter,serif;
   font-weight: 500;
   word-wrap: break-word;
 }
@@ -174,7 +150,7 @@ export default {
   width: 48px;
   height: 48px;
   left: 6px;
-  top: 0px;
+  top: 0;
   position: absolute;
   backdrop-filter: blur(6px);
 }
