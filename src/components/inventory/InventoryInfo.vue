@@ -3,7 +3,7 @@
     <div class="container-text">
       <div class="container-img">
         <div class="img">
-          <img src="@/assets/nicebg.png" />
+          <img src="../../assets/nicebg.png" />
         </div>
       </div>
       <div class="blur"></div>
