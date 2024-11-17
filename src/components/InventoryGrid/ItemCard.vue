@@ -35,65 +35,41 @@ import { hexToRGBA } from '@/services/colorUtils.js'
 
 export default {
   props: {
-    color: {
-      type: Object,
-      required: true,
-    },
-    index: {
-      type: Number,
-      required: true,
-    },
-    isSelected: {
-      type: Boolean,
-      required: true,
-    },
+    color: { type: Object, required: true },
+    index: { type: Number, required: true },
+    isSelected: { type: Boolean, required: true },
   },
   data() {
     return {
       isDrag: false,
-      element: null,
     }
   },
-  emits: ['dragstart', 'dragover', 'dragend', 'click'],
+  emits: ['start', 'over', 'end', 'select'],
   methods: {
-    // Обработчик события dragstart
     dragStart(event) {
-      // Клонируем элемент и добавляем ему класс "dragging"
-      const element = event.srcElement.cloneNode(true)
-      element.classList.add('dragging')
-
-      // Добавляем клонированный элемент в body
-      document.body.appendChild(element)
-      this.element = element
-      event.dataTransfer.setDragImage(element, 50, 50)
-
+      event.dataTransfer.setData('text/plain', this.index)
       this.isDrag = true
-      this.$emit('dragstart', this.index)
+      this.$emit('start', this.index)
     },
-    // Обработчик события dragover
     dragOver() {
-      this.$emit('dragover', this.index)
+      this.$emit('over', this.index)
     },
-    // Обработчик события dragend
     dragEnd() {
       this.isDrag = false
-      this.$emit('dragend')
+      this.$emit('end')
     },
-    // Обработчик события click для выбора карты
     selectCard() {
-      if (this.color.name == null) {
-        return
-      }
-      this.$emit('click', this.index)
+      if (!this.color.name) return
+      this.$emit('select', this.index)
     },
   },
   computed: {
-    // Вычисление цвета с альфа-каналом для стиля glass-effect
     colorWithAlpha() {
-      return hexToRGBA(this.color.name, 0.35) // Здесь 0.35 - значение альфа-канала (от 0 до 1)
+      return this.color.name ? hexToRGBA(this.color.name, 0.35) : null
     },
   },
 }
+
 </script>
 
 <style>
@@ -124,21 +100,14 @@ export default {
   height: 48px;
   backdrop-filter: blur(6px);
   z-index: 2;
-  position: absolute;
-  top: 50%;
-  left: 50%;
   transform: translate(55%, 45%);
   left: 6px;
-  top: 0px;
+  top: 0;
   position: absolute;
 }
 
 .card-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
   transform: translate(55%, 45%);
-  position: absolute;
   width: 48px;
   height: 48px;
   z-index: 1;
@@ -148,11 +117,6 @@ export default {
 }
 
 .number-frame {
-  width: 16px;
-  height: 16px;
-  left: 0px;
-  top: 0px;
-  position: absolute;
   background: #262626;
   border-top-left-radius: 6px;
   border: 0.5px #4d4d4d solid;
@@ -165,17 +129,8 @@ export default {
   text-align: center;
   color: white;
   font-size: 10px;
-  font-family: Inter;
+  font-family: Inter,serif;
   font-weight: 500;
   word-wrap: break-word;
-}
-
-.color-item-blur {
-  width: 48px;
-  height: 48px;
-  left: 6px;
-  top: 0px;
-  position: absolute;
-  backdrop-filter: blur(6px);
 }
 </style>
