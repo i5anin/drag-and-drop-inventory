@@ -10,7 +10,7 @@
 
 <script>
 import InventoryInfo from '@/components/info/LeftInfo.vue'
-import InventoryFooter from '@/components/footer/_Footer.vue'
+import InventoryFooter from '@/components/footer/TheFooter.vue'
 import InventoryPage from '@/components/grid/GridView.vue'
 
 export default {
