@@ -35,41 +35,65 @@ import { hexToRGBA } from '@/services/colorUtils.js'
 
 export default {
   props: {
-    color: { type: Object, required: true },
-    index: { type: Number, required: true },
-    isSelected: { type: Boolean, required: true },
+    color: {
+      type: Object,
+      required: true,
+    },
+    index: {
+      type: Number,
+      required: true,
+    },
+    isSelected: {
+      type: Boolean,
+      required: true,
+    },
   },
   data() {
     return {
       isDrag: false,
+      element: null,
     }
   },
-  emits: ['start', 'over', 'end', 'select'],
+  emits: ['dragstart', 'dragover', 'dragend', 'click'],
   methods: {
+    // Обработчик события dragstart
     dragStart(event) {
-      event.dataTransfer.setData('text/plain', this.index)
+      // Клонируем элемент и добавляем ему класс "dragging"
+      const element = event.srcElement.cloneNode(true)
+      element.classList.add('dragging')
+
+      // Добавляем клонированный элемент в body
+      document.body.appendChild(element)
+      this.element = element
+      event.dataTransfer.setDragImage(element, 50, 50)
+
       this.isDrag = true
-      this.$emit('start', this.index)
+      this.$emit('dragstart', this.index)
     },
+    // Обработчик события dragover
     dragOver() {
-      this.$emit('over', this.index)
+      this.$emit('dragover', this.index)
     },
+    // Обработчик события dragend
     dragEnd() {
       this.isDrag = false
-      this.$emit('end')
+      this.$emit('dragend')
     },
+    // Обработчик события click для выбора карты
     selectCard() {
-      if (!this.color.name) return
-      this.$emit('select', this.index)
+      if (this.color.name == null) {
+        return
+      }
+      this.$emit('click', this.index)
     },
   },
   computed: {
+    // Вычисление цвета с альфа-каналом для стиля glass-effect
     colorWithAlpha() {
-      return this.color.name ? hexToRGBA(this.color.name, 0.35) : null
+      return hexToRGBA(this.color.name, 0.35) // Здесь 0.35 - значение альфа-канала (от 0 до 1)
     },
   },
 }
-
 </script>
 
 <style>
@@ -100,14 +124,21 @@ export default {
   height: 48px;
   backdrop-filter: blur(6px);
   z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
   transform: translate(55%, 45%);
   left: 6px;
-  top: 0;
+  top: 0px;
   position: absolute;
 }
 
 .card-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
   transform: translate(55%, 45%);
+  position: absolute;
   width: 48px;
   height: 48px;
   z-index: 1;
@@ -117,6 +148,11 @@ export default {
 }
 
 .number-frame {
+  width: 16px;
+  height: 16px;
+  left: 0px;
+  top: 0px;
+  position: absolute;
   background: #262626;
   border-top-left-radius: 6px;
   border: 0.5px #4d4d4d solid;
@@ -129,8 +165,17 @@ export default {
   text-align: center;
   color: white;
   font-size: 10px;
-  font-family: Inter,serif;
+  font-family: Inter;
   font-weight: 500;
   word-wrap: break-word;
+}
+
+.color-item-blur {
+  width: 48px;
+  height: 48px;
+  left: 6px;
+  top: 0px;
+  position: absolute;
+  backdrop-filter: blur(6px);
 }
 </style>

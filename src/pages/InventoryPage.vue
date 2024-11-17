@@ -11,7 +11,7 @@
 <script>
 import InventoryInfo from '@/components/inventory/InventoryInfo.vue'
 import InventoryFooter from '@/components/inventory/InventoryFooter.vue'
-import InventoryPage from '@/components/PageInventory.vue'
+import InventoryPage from '@/components/InventoryGrid/InventoryPage.vue'
 export default {
   components: {
     InventoryInfo,
