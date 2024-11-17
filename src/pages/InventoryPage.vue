@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import InventoryInfo from '@/components/inventory/InventoryInfo.vue'
-import InventoryFooter from '@/components/inventory/InventoryFooter.vue'
-import InventoryPage from '@/components/InventoryGrid/InventoryPage.vue'
+import InventoryInfo from '@/components/info/_LeftInfo.vue'
+import InventoryFooter from '@/components/footer/_Footer.vue'
+import InventoryPage from '@/components/grid/_Grid.vue'
 export default {
   components: {
     InventoryInfo,

@@ -21,9 +21,9 @@
 </template>
 
 <script>
-import ItemCard from '@/components/InventoryGrid/ItemCard.vue'
-import ModalView from '@/components/InventoryGrid/ModalView.vue'
-import { savePositions, loadPositions } from '@/services/localStorage.js'
+import ItemCard from './ColorCard.vue'
+import ModalView from '@/components/modal/ModalView.vue'
+import { savePositions, loadPositions } from '@/utils/localStorage.js'
 import { ref, computed, watch } from 'vue'
 
 export default {
