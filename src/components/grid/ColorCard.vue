@@ -90,8 +90,8 @@ export default {
 }
 
 .block {
-  padding: 0px;
-  border: 0.5px #4d4d4d solid;
+  padding: 0;
+  border: 1px #4d4d4d solid;
   display: flex;
   justify-content: center;
   align-items: center;

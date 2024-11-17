@@ -1,6 +1,6 @@
 <template>
-  <div class="center">
-    <div class="content">
+  <div class="main-center">
+    <div>
       <InventoryInfo />
       <InventoryFooter />
       <InventoryPage />
@@ -9,9 +9,10 @@
 </template>
 
 <script>
-import InventoryInfo from '@/components/info/_LeftInfo.vue'
+import InventoryInfo from '@/components/info/LeftInfo.vue'
 import InventoryFooter from '@/components/footer/_Footer.vue'
-import InventoryPage from '@/components/grid/_Grid.vue'
+import InventoryPage from '@/components/grid/GridView.vue'
+
 export default {
   components: {
     InventoryInfo,
@@ -22,9 +23,10 @@ export default {
 </script>
 
 <style>
-.center {
+.main-center {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh; /* Занимает всю высоту экрана */
 }
 </style>
