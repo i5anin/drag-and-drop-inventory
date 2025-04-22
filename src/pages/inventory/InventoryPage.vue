@@ -11,13 +11,13 @@
 <script>
 import InventoryInfo from '@/shared/ui/LeftInfo.vue'
 import InventoryFooter from '@/shared/ui/TheFooter.vue'
-import InventoryPage from '@/widgets/InventoryTable/ui/GridView.vue'
+import MainGrid from '@/widgets/InventoryTable/ui/MainGrid.vue'
 
 export default {
   components: {
     InventoryInfo,
     InventoryFooter,
-    InventoryPage,
+    InventoryPage: MainGrid,
   },
 }
 </script>

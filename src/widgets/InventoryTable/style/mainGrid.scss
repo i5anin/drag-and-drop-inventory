@@ -1,0 +1,38 @@
+// src/widgets/InventoryTable/style/mainGrid.scss
+.main-grid {
+  position: absolute;
+  left: 292px;
+  top: 32px;
+  display: inline-flex;
+  flex-direction: column;
+  background: #262626;
+  border: 0.5px solid #4d4d4d;
+  border-radius: 12px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border-radius: 12px;
+  overflow: hidden;
+
+  :nth-child(1) .block {
+    border-top-left-radius: 12px;
+  }
+
+  :nth-child(5) .block {
+    border-top-right-radius: 12px;
+  }
+
+  :nth-child(21) .block {
+    border-bottom-left-radius: 12px;
+  }
+
+  :nth-child(25) .block {
+    border-bottom-right-radius: 12px;
+  }
+}
+
+.cell.empty {
+  /* Пустая ячейка */
+}
