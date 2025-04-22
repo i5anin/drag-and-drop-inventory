@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import InventoryPage from '@/pages/InventoryPage.vue'
+import InventoryPage from '@/pages/inventory/InventoryPage.vue'
 
 export default {
   name: 'App',

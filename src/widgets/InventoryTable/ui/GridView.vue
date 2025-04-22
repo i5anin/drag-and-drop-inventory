@@ -24,7 +24,7 @@
 import { ref, computed, watch } from 'vue'
 import ItemCard from './ItemCard.vue'
 import ItemView from './ItemView.vue'
-import { savePositions, loadPositions } from '@/utils/localStorage.js'
+import { savePositions, loadPositions } from '@/shared/utils/localStorage.js'
 
 export default {
   name: 'MainGrid',

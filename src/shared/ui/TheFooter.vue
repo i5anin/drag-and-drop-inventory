@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import CloseSVG from '@/assets/close.svg'
+import CloseSVG from '@/shared/assets/close.svg'
 
 export default {
   data() {

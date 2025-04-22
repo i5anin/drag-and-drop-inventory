@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { hexToRGBA } from '@/utils/colorUtils.js';
+import { hexToRGBA } from '@/shared/utils/colorUtils.js';
 
 export default {
   props: {
