@@ -3,18 +3,31 @@
     <div
       class="block"
       :draggable="isDraggable"
-      @dragstart="onDragStart"
-      @dragover="onDragOver"
-      @dragend="onDragEnd"
-      @click="onSelectCard"
       :class="{
         selected: isSelected,
         empty: !isDraggable,
       }"
+      @dragstart="onDragStart"
+      @dragover="onDragOver"
+      @dragend="onDragEnd"
+      @click="onSelectCard"
     >
-      <div v-if="isDraggable" class="glass-effect" :style="{ backgroundColor: colorWithAlpha }"></div>
-      <div v-if="isDraggable" class="card-content" :style="{ backgroundColor: color.name }"></div>
-      <div v-if="color.quantity !== null" class="number-frame">{{ color.quantity }}</div>
+      <div
+        v-if="isDraggable"
+        class="glass-effect"
+        :style="{ backgroundColor: colorWithAlpha }"
+      />
+      <div
+        v-if="isDraggable"
+        class="card-content"
+        :style="{ backgroundColor: color.name }"
+      />
+      <div
+        v-if="color.quantity !== null"
+        class="number-frame"
+      >
+        {{ color.quantity }}
+      </div>
     </div>
   </div>
 </template>
@@ -37,13 +50,13 @@ export default {
       required: true,
     },
   },
+  emits: ['dragstart', 'dragover', 'dragend', 'click'],
   data() {
     return {
       isDragging: false,
       clonedElement: null,
     };
   },
-  emits: ['dragstart', 'dragover', 'dragend', 'click'],
   computed: {
     isDraggable() {
       return Boolean(this.color.name);

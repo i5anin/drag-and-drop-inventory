@@ -14,6 +14,8 @@ export default {
 </script>
 
 <style>
+/* Подключение шрифта */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 /* Центрируем контейнер с компонентом */
 .app-container {
   display: flex;
@@ -29,6 +31,5 @@ body {
   height: 100%;
 }
 
-/* Подключение шрифта */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 </style>
