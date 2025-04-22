@@ -38,47 +38,67 @@ function getDescription(name, filePath, isDir = false) {
 
 // 📌 Функция рекурсивного обхода директорий
 export function scanDirectory(dir, baseDir, depth = 1, stats, prefix = "") {
-    if (!fs.existsSync(dir)) return "";
+  if (!fs.existsSync(dir)) return "";
 
-    const entries = fs
-        .readdirSync(dir, { withFileTypes: true })
-        .filter((entry) => {
-            if (IGNORED_FOLDERS.has(entry.name)) return false; // Игнорируем папки
-            if (!entry.isDirectory() && IGNORED_EXTENSIONS.has(path.extname(entry.name).toLowerCase())) return false; // Игнорируем файлы
-            return true;
-        })
-        .sort((a, b) => {
-            if (a.isDirectory() && !b.isDirectory()) return -1;
-            if (!a.isDirectory() && b.isDirectory()) return 1;
-            return a.name.localeCompare(b.name);
-        });
+  const entries = fs
+    .readdirSync(dir, { withFileTypes: true })
+    .filter((entry) => {
+      if (IGNORED_FOLDERS.has(entry.name)) return false;
+      if (!entry.isDirectory() && IGNORED_EXTENSIONS.has(path.extname(entry.name).toLowerCase())) return false;
+      return true;
+    })
+    .sort((a, b) => {
+      if (a.isDirectory() && !b.isDirectory()) return -1;
+      if (!a.isDirectory() && b.isDirectory()) return 1;
+      return a.name.localeCompare(b.name);
+    });
 
-    if (entries.length === 0) return ""; // 📌 Фикс: Если папка пустая, не добавляем лишний `\n`
+  if (entries.length === 0) return "";
 
-    return entries
-        .map((entry, index) => {
-            const isLast = index === entries.length - 1;
-            const newPrefix = depth > 1 ? prefix + (isLast ? "  " : "┃ ") : "";
-            const linePrefix = depth > 1 ? prefix + (isLast ? "┗ " : "┣ ") : "";
-            const filePath = path.join(dir, entry.name);
-            const fileName = entry.name;
+  const lines = [];
 
-            if (entry.isDirectory()) {
-                const description = getDescription(fileName, filePath, true);
-                const subTree = scanDirectory(filePath, baseDir, depth + 1, stats, newPrefix);
-                return `${linePrefix}📂 ${fileName}${description ? ` — ${description}` : ""}${subTree ? `\n${subTree}` : ""}`;
-            } else {
-                const ext = path.extname(fileName).toLowerCase();
-                stats.fileCount[ext] = (stats.fileCount[ext] || 0) + 1;
-                const lines = countFileLines(filePath);
-                stats.fileLines[ext] = (stats.fileLines[ext] || 0) + lines;
-                stats.totalLines += lines;
-                stats.fileLineCounts.push({ file: fileName, lines });
+  entries.forEach((entry, index) => {
+    const isLast = index === entries.length - 1;
+    const connector = isLast ? "└── " : "├── ";
+    const childPrefix = prefix + (isLast ? "    " : "│   ");
+    const filePath = path.join(dir, entry.name);
+    const fileName = entry.name;
 
-                const description = getDescription(fileName, filePath);
-                return `${linePrefix}${getFileEmoji(fileName)} ${fileName} (${lines} строк)${description ? ` — ${description}` : ""}`;
-            }
-        })
-        .filter(Boolean) // 📌 Фикс: Удаляем пустые строки в `.map()`
-        .join("\n");
+    if (entry.isDirectory()) {
+      const description = getDescription(fileName, filePath, true);
+      const title = `${prefix}${connector}📂 ${fileName}${description ? ` — ${description}` : ""}`;
+      const subtree = scanDirectory(filePath, baseDir, depth + 1, stats, childPrefix);
+      lines.push(title);
+      if (subtree) {
+        lines.push(subtree);
+
+        // 📌 Добавляем отступ, если текущая папка — не последняя
+        // и после неё идут другие узлы
+        if (depth > 1 && !isLast) {
+          lines.push(`${childPrefix}`);
+        }
+      }
+    } else {
+      const ext = path.extname(fileName).toLowerCase();
+      stats.fileCount[ext] = (stats.fileCount[ext] || 0) + 1;
+      const linesCount = countFileLines(filePath);
+      stats.fileLines[ext] = (stats.fileLines[ext] || 0) + linesCount;
+      stats.totalLines += linesCount;
+      stats.fileLineCounts.push({ file: fileName, lines: linesCount });
+
+      const description = getDescription(fileName, filePath);
+      const line = `${prefix}${connector}${getFileEmoji(fileName)} ${fileName} (${linesCount} строк)` + (description ? ` — ${description}` : "");
+      lines.push(line);
+
+      // 📌 Если за файлом идёт директория — добавляем пустую строку-отступ
+      const nextEntry = entries[index + 1];
+      if (nextEntry?.isDirectory()) {
+        lines.push(`${prefix}│   `);
+      }
+    }
+  });
+
+  return lines.join("\n");
 }
+
+
