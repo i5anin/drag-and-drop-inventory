@@ -4,13 +4,12 @@ import { execSync } from "child_process";
 import { Root } from "./paths.js";
 import { scanDirectory } from "./treeBuilder.js";
 import { generateFileStats, getTopFiles } from "./fileStats.js";
-import { PROJECT_NAME, PROJECT_DESCRIPTION, WAKATIME_BADGE } from "./projectConfig.js";
 
 // 📌 Определяем корень Git-проекта
 function getGitRoot() {
   try {
     return execSync("git rev-parse --show-toplevel").toString().trim();
-  } catch (error) {
+  } catch {
     console.error("🚨 Ошибка: Не удалось определить корень Git-проекта. Используется текущая директория.");
     return process.cwd();
   }
