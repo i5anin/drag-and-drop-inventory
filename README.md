@@ -29,18 +29,18 @@
 
 ## 📊 Автоматическая статистика проекта
 
-- 📄 **Всего файлов**: 19
-- 📜 **Всего строк кода**: 880
+- 📄 **Всего файлов**: 14
+- 📜 **Всего строк кода**: 889
 
 ## 📂 Структура проекта
 ```
 📦 src
 ├── 📂 app
-│   ├── 📗 App.vue (36 строк)
-│   └── 📜 main.ts (9 строк)
+│   ├── 📗 App.vue (29 строк)
+│   └── 📜 main.ts (5 строк)
 ├── 📂 pages
 │   └── 📂 inventory
-│       └── 📗 InventoryPage.vue (33 строк)
+│       └── 📗 InventoryPage.vue (24 строк)
 ├── 📂 shared
 │   ├── 📂 assets — ⭐ Статические файлы (изображения, иконки, шрифты)
 │   │   ├── 📂 icons
@@ -49,47 +49,36 @@
 │   │   └── 📂 images
 │   │   
 │   ├── 📂 types
-│   │   ├── 📂 external
-│   │   │   └── 📜 launch-editor-middleware.d.ts (20 строк)
-│   │   │   
-│   │   └── 📜 vue-shim.d.ts (9 строк)
+│   │   └── 📜 inventory.ts (8 строк)
 │   │   
 │   ├── 📂 ui
-│   │   ├── 📗 LeftInfo.vue (145 строк)
-│   │   └── 📗 TheFooter.vue (62 строк)
+│   │   ├── 📗 LeftInfo.vue (143 строк)
+│   │   └── 📗 TheFooter.vue (45 строк)
 │   │   
 │   └── 📂 utils
-│       ├── 📜 colorUtils.js (21 строк)
 │       ├── 📜 colorUtils.ts (23 строк)
-│       ├── 📜 localStorage.js (40 строк)
-│       └── 📜 localStorage.ts (29 строк)
-└── 📂 widgets
-    └── 📂 InventoryTable
-        ├── 📂 model
-        │   ├── 📜 useDragCard.js (26 строк)
-        │   └── 📜 useInventoryGrid.js (52 строк)
-        │   
-        ├── 📂 style
-        │   ├── 🎨 itemCard.scss (68 строк)
-        │   └── 🎨 mainGrid.scss (39 строк)
-        │   
-        └── 📂 ui
-            ├── 📗 ItemCard.vue (171 строк)
-            ├── 📗 ItemView.vue (51 строк)
-            └── 📗 MainGrid.vue (42 строк)
+│       └── 📜 localStorage.ts (65 строк)
+├── 📂 widgets
+│   └── 📂 InventoryTable
+│       ├── 📂 model
+│       │   └── 📜 useInventoryGrid.ts (95 строк)
+│       │   
+│       └── 📂 ui
+│           ├── 📗 ItemCard.vue (187 строк)
+│           ├── 📗 ItemView.vue (178 строк)
+│           └── 📗 MainGrid.vue (81 строк)
+└── 📜 vite-env.d.ts (2 строк)
 
 ```
 
 ### 📁 Количество файлов и строк (src):
-  - .vue: 7 файлов, 540 строк
-  - .ts: 5 файлов, 90 строк
+  - .vue: 7 файлов, 687 строк
+  - .ts: 6 файлов, 198 строк
   - .svg: 1 файлов, 4 строк
-  - .js: 4 файлов, 139 строк
-  - .scss: 2 файлов, 107 строк
 
 ### 📊 Топ-5 длинных файлов (src):
-- 🔍 ItemCard.vue — 171 строк
-- 🔍 LeftInfo.vue — 145 строк
-- 🔍 itemCard.scss — 68 строк
-- 🔍 TheFooter.vue — 62 строк
-- 🔍 useInventoryGrid.js — 52 строк
+- 🔍 ItemCard.vue — 187 строк
+- 🔍 ItemView.vue — 178 строк
+- 🔍 LeftInfo.vue — 143 строк
+- 🔍 useInventoryGrid.ts — 95 строк
+- 🔍 MainGrid.vue — 81 строк

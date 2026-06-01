@@ -1,35 +1,28 @@
 <template>
-  <div>
-    <InventoryPage  class="app-container" />
+  <div class="app">
+    <InventoryPage />
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import InventoryPage from '@/pages/inventory/InventoryPage.vue'
-
-export default {
-  name: 'App',
-  components: { InventoryPage },
-}
 </script>
 
-<style>
-/* Подключение шрифта */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-/* Центрируем контейнер с компонентом */
-.app-container {
-  display: flex;
-  justify-content: center;  /* Горизонтальное центрирование */
-  align-items: center;      /* Вертикальное центрирование */
-  height: 100vh;            /* Занимает всю высоту экрана */
-  background-color: #1e1e1e;
-  font-family: 'Inter', sans-serif;
+<style lang="scss">
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  height: 100%;
 }
 
-
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #1e1e1e;
+  font-family: 'Inter', sans-serif;
+}
 </style>

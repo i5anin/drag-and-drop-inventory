@@ -1,32 +1,23 @@
 <template>
-  <div class="main-center">
-    <div>
-      <InventoryInfo />
-      <InventoryFooter />
-      <InventoryPage />
-    </div>
-  </div>
+  <main class="inventory-layout">
+    <LeftInfo />
+    <MainGrid />
+    <InventoryToolbar />
+  </main>
 </template>
 
-<script>
-import InventoryInfo from '@/shared/ui/LeftInfo.vue'
-import InventoryFooter from '@/shared/ui/TheFooter.vue'
+<script setup lang="ts">
+import LeftInfo from '@/shared/ui/LeftInfo.vue'
 import MainGrid from '@/widgets/InventoryTable/ui/MainGrid.vue'
-
-export default {
-  components: {
-    InventoryInfo,
-    InventoryFooter,
-    InventoryPage: MainGrid,
-  },
-}
+import InventoryToolbar from '@/widgets/InventoryTable/ui/InventoryToolbar.vue'
 </script>
 
-<style>
-.main-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh; /* Занимает всю высоту экрана */
+<style scoped lang="scss">
+// Фиксированная «сцена» по размеру макета — внутри неё всё спозиционировано
+// абсолютно, а саму сцену центрируем во вьюпорте (см. .app в App.vue).
+.inventory-layout {
+  position: relative;
+  width: 849px;
+  height: 660px;
 }
 </style>

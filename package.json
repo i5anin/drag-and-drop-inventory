@@ -1,19 +1,23 @@
 {
-  "name": "my-vue-app",
+  "name": "drag-and-drop-inventory",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "type-check": "vue-tsc --noEmit",
+    "test": "vue-tsc --noEmit"
   },
   "dependencies": {
     "vue": "^3.5.13"
   },
   "devDependencies": {
+    "@types/node": "^22.10.5",
     "@vitejs/plugin-vue": "^5.2.2",
     "@vue/tsconfig": "^0.7.0",
+    "sass": "^1.83.1",
     "typescript": "~5.7.2",
     "vite": "^6.3.1",
     "vue-tsc": "^2.2.8"
